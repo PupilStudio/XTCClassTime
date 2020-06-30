@@ -43,6 +43,10 @@ namespace XTCClassTime
             UUID = datas[5];
         }
 
+        public ClassTime()
+        {
+        }
+
         public static bool operator <(ClassTime lhs, ClassTime rhs)
         {
             return lhs.BeginHour * 60 + lhs.BeginMinute < rhs.BeginHour * 60 + rhs.BeginMinute;

@@ -1,24 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.IO;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Java.Util.Functions;
-using Android.Graphics;
 
 namespace XTCClassTime
 {
-   
+
     public static class DataController
     {
         private const string DATA_PATH = "/data/data/cn.pupilstudio.xtcclasstime/";
         private const string CLASSES_PREFIX = "weekday";
+
+        private const string IMAGES_DEFAULT =
+@"语文 Chinese
+数学 Math
+英语 English
+音乐 Music
+美术 Art
+体育 PE
+信息技术 Unknown
+班会 Unknown
+校本 Unknown
+道德与法制 Unknown
+历史 Unknown
+政治 Unknown
+地理 Unknown
+物理 Unknown
+化学 Unknown
+生物 Unknown";
         
         /// <summary>
         /// 删除一节课
@@ -98,7 +105,7 @@ namespace XTCClassTime
             string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
             if (!File.Exists(imgConfFilePath))
             {
-                File.WriteAllText(imgConfFilePath, "");
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
             }
             string imgConfig = File.ReadAllText(imgConfFilePath);
 
@@ -121,6 +128,7 @@ namespace XTCClassTime
                 case "Music":
                 case "Art":
                 case "PE":
+                case "Unknown":
                 default:
                     return Resource.Drawable.UnknownClass;
             }
