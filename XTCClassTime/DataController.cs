@@ -26,7 +26,9 @@ namespace XTCClassTime
 物理 Unknown
 化学 Unknown
 生物 Unknown";
-        
+
+        public static ViewClassesActivity ViewClassesActivityBody;
+
         /// <summary>
         /// 删除一节课
         /// </summary>

@@ -39,6 +39,7 @@ namespace XTCClassTime
             SupportActionBar.Hide();
             SetContentView(Resource.Layout.activity_view_classes);
 
+            DataController.ViewClassesActivityBody = this;
 
             FindViewById<ListView>(Resource.Id.ViewClassesList).Adapter
                 = new ClassTimeAdapter(this, DataController.GetClasses(week));
@@ -48,10 +49,9 @@ namespace XTCClassTime
             {
                 Intent intent = new Intent(this, typeof(DeleteClassActivity));
                 intent.PutExtra("Week", week);                           
-                intent.PutExtra("ClassPosition", e.Position);
-                StartActivity(intent);
-                FindViewById<ListView>(Resource.Id.ViewClassesList).Adapter
-                 = new ClassTimeAdapter(this, DataController.GetClasses(week));
+                intent.PutExtra("ClassPosition", 
+                    ((ClassTime)FindViewById<ListView>(Resource.Id.ViewClassesList).Adapter.GetItem(e.Position)).UUID);
+                StartActivityForResult(intent, 114);                
             };
             FindViewById<Button>(Resource.Id.AddClassButton).Click +=
                 (sender, e) =>
@@ -61,6 +61,14 @@ namespace XTCClassTime
                     StartActivity(intent);
                 };
             // Create your application here
+        }
+
+        public void RefreshList()
+        {
+            //Toast.MakeText(this, "Fuck You", ToastLength.Short).Show();
+            FindViewById<ListView>(Resource.Id.ViewClassesList).Adapter
+                = new ClassTimeAdapter(this, DataController.GetClasses(week));
+            FindViewById<ListView>(Resource.Id.ViewClassesList).Invalidate();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace XTCClassTime
     [Activity(Label = "CreateClassActivity")]
     public class CreateClassActivity : AppCompatActivity
     {
+        int begHour = -1, begMinute = -1, endHour = -1, endMinute = -1;
         int week;
         List<string> subjects;
 
@@ -40,7 +41,7 @@ namespace XTCClassTime
             // TODO: 用户自定义科目
             //subjects.Add("新建科目");
             FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).Adapter =
-                new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, subjects);
+                new ArrayAdapter(this, Resource.Layout.simple_spinner_xtc_item, subjects);
         }
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -60,14 +61,33 @@ namespace XTCClassTime
                 hours[i] = FmtInt(i) + "时";
             }
 
-            FindViewById<Spinner>(Resource.Id.SpinnerBeginHour).Adapter
-                //= FindViewById<Spinner>(Resource.Id.SpinnerBeginMinute).Adapter
-                = FindViewById<Spinner>(Resource.Id.SpinnerEndHour).Adapter
-                //= FindViewById<Spinner>(Resource.Id.SpinnerEndMinute).Adapter
-                = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, hours);
-            FindViewById<Spinner>(Resource.Id.SpinnerBeginMinute).Adapter
-                = FindViewById<Spinner>(Resource.Id.SpinnerEndMinute).Adapter
-                = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, minutes);
+
+            FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Click +=
+                (sender, e) =>
+                {
+                    TimePickerDialog dialog = new TimePickerDialog(this,
+                        (sender, e) =>
+                        {
+                            FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Text =
+                                "课程开始时间: " + FmtInt(e.HourOfDay) + ":" + FmtInt(e.Minute);
+                            begHour = e.HourOfDay;
+                            begMinute = e.Minute;
+                        }, 0, 0, true);
+                    dialog.Show();
+                };
+            FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Click +=
+                (sender, e) =>
+                {
+                    TimePickerDialog dialog = new TimePickerDialog(this,
+                        (sender, e) =>
+                        {
+                            FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
+                                "课程结束时间: " + FmtInt(e.HourOfDay) + ":" + FmtInt(e.Minute);
+                            endHour = e.HourOfDay;
+                            endMinute = e.Minute;
+                        }, 0, 0, true);
+                    dialog.Show();
+                };
 
             LoadSubjects();
             FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).ItemSelected +=
@@ -91,20 +111,34 @@ namespace XTCClassTime
                     ct.ClassName = FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).SelectedItem.ToString();
                     if (ct.ClassName == "选择科目")
                     {
-                        Toast.MakeText(this, "请选择科目!", ToastLength.Short);
+                        Toast.MakeText(this, "请选择科目!", ToastLength.Short).Show();
                         return;
                     }
-                    ct.BeginHour = 
-                        int.Parse(FindViewById<Spinner>(Resource.Id.SpinnerBeginHour).SelectedItem.ToString().Substring(0,2));
-                    ct.BeginMinute = 
-                        int.Parse(FindViewById<Spinner>(Resource.Id.SpinnerBeginMinute).SelectedItem.ToString().Substring(0, 2));
-                    ct.EndHour = 
-                        int.Parse(FindViewById<Spinner>(Resource.Id.SpinnerEndHour).SelectedItem.ToString().Substring(0, 2));
-                    ct.EndMinute = 
-                        int.Parse(FindViewById<Spinner>(Resource.Id.SpinnerEndMinute).SelectedItem.ToString().Substring(0, 2));
+                    if (begHour == -1 || begMinute == -1)
+                    {
+                        Toast.MakeText(this, "请选择课程开始时间!", ToastLength.Short).Show();
+                        return;
+                    }
+                    if (endHour == -1 || endMinute == -1)
+                    {
+                        Toast.MakeText(this, "请选择课程结束时间!", ToastLength.Short).Show();
+                        return;
+                    }
+                    if (begHour * 60 + begMinute >= endHour * 60 + endMinute)
+                    {
+                        Toast.MakeText(this, "课程开始时间必须早于课程结束时间!", ToastLength.Short).Show();
+                        return;
+                    }
+                    ct.BeginHour = begHour;
+                    ct.BeginMinute = begMinute;
+                    ct.EndHour = endHour;
+                    ct.EndMinute = endMinute;
                     DataController.AddClass(week, ct);
                     Toast.MakeText(this, "课程添加成功!", ToastLength.Short);
+                    DataController.ViewClassesActivityBody.RefreshList();
+                    this.SetResult(Result.Ok);
                     this.Finish();
+                    return;
                 };
 
             // Create your application here

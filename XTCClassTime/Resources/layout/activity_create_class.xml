@@ -1,4 +1,3 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,70 +8,36 @@
         android:layout_height="wrap_content"
         android:text="添加课程"
         android:id="@+id/AddClassTextView"
-        android:textColor="#FFFFFF"
-        android:background="#2A2B2C"
-        android:textColorHint="#CDFFFFFF"
+        android:textColor="#58FF78"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="5dp"
         />
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
         android:id="@+id/SpinnerChooseClass"/>
     
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="课程开始时间"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CDFFFFFF"/>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"           
-            android:spinnerMode="dialog"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CDFFFFFF"
-            android:id="@+id/SpinnerBeginHour"/>
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:spinnerMode="dialog"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CDFFFFFF"
-            android:id="@+id/SpinnerBeginMinute"/>
-    </LinearLayout>
+        android:text="请选择课程开始时间"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CDFFFFFF"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:id="@+id/SwitchBeginTimeTextView"/>
+    
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="课程结束时间"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CDFFFFFF"/>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">        
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"       
-            android:spinnerMode="dialog"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CDFFFFFF"
-            android:id="@+id/SpinnerEndHour"/>
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:spinnerMode="dialog"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CDFFFFFF"
-            android:id="@+id/SpinnerEndMinute"/>
-    </LinearLayout>
+        android:text="请选择课程结束时间"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CDFFFFFF"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:id="@+id/SwitchEndTimeTextView"/>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
