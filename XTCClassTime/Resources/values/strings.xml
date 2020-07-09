@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">XTCClassTime</string>
+    <string name="app_name">课程表</string>
     <string name="action_settings">Settings</string>
     <string name="SettingsButtonText">更多</string>
     <string name="AddClass">添加课程</string>
