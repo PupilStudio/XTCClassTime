@@ -2,4 +2,4 @@
 
 就是给小天才电话手表使用的课程表。
 
-捐赠地址: [爱发电](http://afdian.net/@XTCClassTime)
+捐赠地址: [爱发电](http://afdian.net/@pupilstudio)
