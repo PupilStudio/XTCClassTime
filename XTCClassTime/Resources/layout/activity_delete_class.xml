@@ -17,6 +17,7 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="118dp"
         android:text="取消"
+        android:textColor="#FFFFFF"
         android:textAlignment="center"/>
     <Button
         android:layout_width="60dp"
@@ -33,5 +34,6 @@
         android:layout_marginTop="118dp"
         android:layout_alignParentRight="true"
         android:text="删除"
+        android:textColor="#FFFFFF"
         android:textAlignment="center"/>
 </RelativeLayout>

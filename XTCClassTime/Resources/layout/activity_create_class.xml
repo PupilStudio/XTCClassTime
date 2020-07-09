@@ -15,10 +15,11 @@
     <Spinner
         android:layout_marginTop="5dp"
         android:layout_width="320dp"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:id="@+id/SpinnerChooseClass"/>
     
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="请选择课程开始时间"
@@ -29,6 +30,7 @@
         android:id="@+id/SwitchBeginTimeTextView"/>
     
     <TextView
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="请选择课程结束时间"

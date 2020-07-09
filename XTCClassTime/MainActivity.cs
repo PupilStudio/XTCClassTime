@@ -48,7 +48,7 @@ namespace XTCClassTime
                 (sender, e) =>
                 {
                     //GetClassesProfile();
-                    var intent = new Intent(this, typeof(SettingsActivity));
+                    var intent = new Intent(this, typeof(WeekPickerActivity));
                     //var intent = new Intent(this, typeof(DeleteClassActivity));
                     StartActivity(intent);
                 };

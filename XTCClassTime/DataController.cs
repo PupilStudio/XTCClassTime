@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Android.Util;
+using Android.Widget;
+using System.Collections.Generic;
 using System.IO;
 
 namespace XTCClassTime
@@ -19,15 +21,13 @@ namespace XTCClassTime
 信息技术 Unknown
 班会 Unknown
 校本 Unknown
-道德与法制 Unknown
+道德与法治 Unknown
 历史 Unknown
 政治 Unknown
 地理 Unknown
 物理 Unknown
 化学 Unknown
 生物 Unknown";
-
-        public static ViewClassesActivity ViewClassesActivityBody;
 
         /// <summary>
         /// 删除一节课
@@ -36,21 +36,20 @@ namespace XTCClassTime
         /// <param name="UUID">这节课的UUID</param>
         public static void RemoveClass(int week, string UUID)
         {
-
             string dataFilePath = System.IO.Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
             string classesText = File.ReadAllText(dataFilePath);
 
             string[] classes = classesText.Split('\n');
-            List<ClassTime> classTimes = new List<ClassTime>();
+            string fileText = "";
             foreach (var i in classes)
             {
                 if (i.Trim() == "")
                     continue;
                 if (i.Contains(UUID))
                     continue;
-                classTimes.Add(new ClassTime(i));
+                fileText += i + '\n';
             }
-            classTimes.Sort();
+            File.WriteAllText(dataFilePath, fileText);
         }
 
         /// <summary>
@@ -60,7 +59,8 @@ namespace XTCClassTime
         /// <returns>课程列表</returns>
         public static List<ClassTime> GetClasses(int week)
         {
-            string dataFilePath = System.IO.Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
+            Log.Warn("GetClasses", "Start");
+            string dataFilePath = Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
             if (!File.Exists(dataFilePath))
             {
                 File.WriteAllText(dataFilePath, "");
@@ -74,8 +74,10 @@ namespace XTCClassTime
                 if (i.Trim() == "")
                     continue;
                 classTimes.Add(new ClassTime(i));
+                Log.Warn("GetClasses", i);
             }
             classTimes.Sort();
+            Log.Warn("GetClasses", "End");
             return classTimes;
         }
 
@@ -83,10 +85,12 @@ namespace XTCClassTime
         /// 在指定的日期添加课程
         /// </summary>
         /// <param name="week">在星期几添加</param>
-        /// <param name="ct">课程的描述。UUID由此函数生成。</param>
-        public static void AddClass(int week, ClassTime ct)
+        /// <param name="ct">课程的描述。UUID默认由此函数生成。</param>
+        /// <param name="genUUID">是否由此函数生成UUID。默认为True.</param>
+        public static void AddClass(int week, ClassTime ct, bool genUUID = true)
         {
-            ct.UUID = System.Guid.NewGuid().ToString();
+            if (genUUID)
+                ct.UUID = System.Guid.NewGuid().ToString();
             string dataFilePath = System.IO.Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
             if (!File.Exists(dataFilePath))
             {

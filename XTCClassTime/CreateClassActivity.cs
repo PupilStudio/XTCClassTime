@@ -135,7 +135,6 @@ namespace XTCClassTime
                     ct.EndMinute = endMinute;
                     DataController.AddClass(week, ct);
                     Toast.MakeText(this, "课程添加成功!", ToastLength.Short);
-                    DataController.ViewClassesActivityBody.RefreshList();
                     this.SetResult(Result.Ok);
                     this.Finish();
                     return;
