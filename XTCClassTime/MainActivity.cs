@@ -50,7 +50,7 @@ namespace XTCClassTime
                     //GetClassesProfile();
                     var intent = new Intent(this, typeof(WeekPickerActivity));
                     //var intent = new Intent(this, typeof(DeleteClassActivity));
-                    StartActivity(intent);
+                    StartActivityForResult(intent, 514);
                 };
 
         }
@@ -98,6 +98,14 @@ namespace XTCClassTime
         public bool OnSingleTapUp(MotionEvent e)
         {
             return false;
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter = 
+                new ClassTimeAdapter(this, DataController.GetClasses((int)DateTime.Now.DayOfWeek));
+            FindViewById<ListView>(Resource.Id.ListViewClasses).Invalidate();
+
         }
     }
 }

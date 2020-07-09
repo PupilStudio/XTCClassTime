@@ -149,7 +149,7 @@ namespace XTCClassTime
             string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
             if (!File.Exists(imgConfFilePath))
             {
-                File.WriteAllText(imgConfFilePath, "");
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
             }
             string imgConfig = File.ReadAllText(imgConfFilePath);
 
