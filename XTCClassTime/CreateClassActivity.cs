@@ -66,12 +66,12 @@ namespace XTCClassTime
                 (sender, e) =>
                 {
                     TimePickerDialog dialog = new TimePickerDialog(this,
-                        (sender, e) =>
+                        (_sender, _e) =>
                         {
                             FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Text =
-                                "课程开始时间: " + FmtInt(e.HourOfDay) + ":" + FmtInt(e.Minute);
-                            begHour = e.HourOfDay;
-                            begMinute = e.Minute;
+                                "课程开始时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
+                            begHour = _e.HourOfDay;
+                            begMinute = _e.Minute;
                         }, 0, 0, true);
                     dialog.Show();
                 };
@@ -79,12 +79,12 @@ namespace XTCClassTime
                 (sender, e) =>
                 {
                     TimePickerDialog dialog = new TimePickerDialog(this,
-                        (sender, e) =>
+                        (_sender, _e) =>
                         {
                             FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
-                                "课程结束时间: " + FmtInt(e.HourOfDay) + ":" + FmtInt(e.Minute);
-                            endHour = e.HourOfDay;
-                            endMinute = e.Minute;
+                                "课程结束时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
+                            endHour = _e.HourOfDay;
+                            endMinute = _e.Minute;
                         }, 0, 0, true);
                     dialog.Show();
                 };

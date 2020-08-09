@@ -8,9 +8,10 @@
         android:layout_height="wrap_content"
         android:text="添加课程"
         android:id="@+id/AddClassTextView"
-        android:textColor="#58FF78"
+        android:textColor="#FF8502"
         android:layout_marginTop="6dp"
         android:layout_marginLeft="5dp"
+        android:textSize="16sp"
         />
     <Spinner
         android:layout_marginTop="5dp"
@@ -45,23 +46,30 @@
         android:layout_height="0dp"
         android:layout_weight="1"     
         android:orientation="vertical"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:gravity="bottom"
         android:orientation="horizontal">
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="79dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_dialog_button_cancel"
             android:id="@+id/CancelCreateClassButton"
+            android:textSize="16sp"
             android:text="取消"/>
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="79dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
+            android:layout_marginLeft="81dp"
             android:id="@+id/CreateClassButton"
-            android:text="添加课程"/>
-    </LinearLayout>>
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:background="@drawable/bg_dialog_button_decide"
+            android:text="添加"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -9,15 +9,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000">
-        <Button
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/TodayClass"
+                android:id="@+id/MainCaptionTextView"                
+                android:textColor="#FF8502"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="16sp"/>
+            <Button
+                android:layout_height="70px"
+                android:layout_width="80px"
+                android:layout_marginTop="3.4dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_menu_bg"
+                android:id="@+id/SettingsButton"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:text="@string/SettingsButtonText"
-            android:id="@+id/SettingsButton"/>
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:text="@string/NoClass"
+            android:id="@+id/NoClassTextView"/>
+        <Button
+            android:layout_width="228px"
+            android:layout_height="228px"
+            android:layout_marginLeft="46px"
+            android:id="@+id/AddClassThisWeekButton"
+            android:background="@drawable/selector_alarm_add_large"/>
         <ListView
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            
+            android:layout_height="match_parent"            
             android:id="@+id/ListViewClasses">
         </ListView>
     </LinearLayout>

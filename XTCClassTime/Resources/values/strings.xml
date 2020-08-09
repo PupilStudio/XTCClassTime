@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="SettingsButtonText">更多</string>
     <string name="AddClass">添加课程</string>
+    <string name="TodayClass">今日课程</string>
+    <string name="NoClass">今天没有课程哦</string>
 </resources>

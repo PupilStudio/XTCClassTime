@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:drawable="@drawable/Back"
-        android:alpha="0x4d"
-        android:state_pressed="true" />
-  <item android:drawable="@drawable/Back" />
+  <item android:state_pressed="false">
+    <shape android:shape="oval">
+      <gradient android:angle="270" android:endColor="#333333" android:startColor="#373737" android:type="linear" />
+    </shape>
+  </item>
+  <item android:state_pressed="true">
+    <shape android:shape="oval">
+      <gradient android:angle="270" android:endColor="#b3333333" android:startColor="#b3373737" android:type="linear" />
+    </shape>
+  </item>
 </selector>

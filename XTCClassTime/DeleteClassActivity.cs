@@ -41,8 +41,8 @@ namespace XTCClassTime
             UUID = Intent.GetStringExtra("ClassPosition");
 
             //Toast.MakeText(this, UUID, ToastLength.Long).Show();
-            (FindViewById<Button>(Resource.Id.DeleteButton)).Click += DeleteClass;
-            (FindViewById<Button>(Resource.Id.ReturnButton)).Click += CancelDelete;
+            (FindViewById<ImageButton>(Resource.Id.DeleteButton)).Click += DeleteClass;
+            (FindViewById<ImageButton>(Resource.Id.ReturnButton)).Click += CancelDelete;
             // Create your application here
         }
     }
