@@ -10,10 +10,6 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="54dp"
         android:scaleType="fitXY"
-        android:paddingBottom="0dp"
-        android:paddingTop="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
         android:background="@drawable/button_back"
         android:src="@drawable/cancel_white"
         android:id="@+id/ReturnButton"/>
@@ -32,10 +28,6 @@
         android:layout_marginRight="1dp"
         android:layout_marginTop="54dp"
         android:scaleType="fitXY"
-        android:paddingBottom="0dp"
-        android:paddingTop="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
         android:background="@drawable/button_delete"
         android:src="@drawable/delete_white"
         android:id="@+id/DeleteButton"/>      

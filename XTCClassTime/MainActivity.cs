@@ -19,14 +19,44 @@ using System.Linq;
 namespace XTCClassTime
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.MainActivity", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, GestureDetector.IOnGestureListener
+    public class MainActivity : AppCompatActivity
     {
+        int week;
+        string[] days = new string[] { "日", "一", "二", "三", "四", "五", "六" };
+
         string FmtInt(int x)
         {
             if (x < 10)
                 return "0" + x.ToString();
             return x.ToString();
         }        
+
+        void UpdateClasses()
+        {
+            var classes = DataController.GetClasses(week);
+            FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter =
+                new ClassTimeAdapter(this, classes);
+            FindViewById<ListView>(Resource.Id.ListViewClasses).Invalidate();
+            if (classes.Count == 0)
+            {
+                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Visible;
+                FindViewById<Button>(Resource.Id.AddClassTodayButton).Visibility = ViewStates.Visible;
+                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Gone;
+                FindViewById<Button>(Resource.Id.AddClassTodayButton).Visibility = ViewStates.Gone;
+                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Visible;
+            }
+
+            string s;
+            if (week == (int)DateTime.Now.DayOfWeek)
+                s = "星期" + days[week] + " 今天";
+            else
+                s = "星期" + days[week];
+            FindViewById<Button>(Resource.Id.DayDisplay).Text = s;
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,29 +67,46 @@ namespace XTCClassTime
 
             SupportActionBar.Hide();
 
-            //ArrayAdapter<string> WdnmdAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, terms);
-            //(FindViewById<ListView>(Resource.Id.ListViewClasses)).Adapter = WdnmdAdapter;
-            var classes = DataController.GetClasses((int)DateTime.Now.DayOfWeek);
-            ClassTimeAdapter ctAdapter = new ClassTimeAdapter(this, classes);
-            FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter = ctAdapter;
-            FindViewById<Button>(Resource.Id.AddClassThisWeekButton).Click += (sender, e) =>
+            week = (int)DateTime.Now.DayOfWeek;
+            FindViewById<Button>(Resource.Id.AddClassTodayButton).Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(CreateClassActivity));
-                intent.PutExtra("Week", (int)DateTime.Now.DayOfWeek);
+                intent.PutExtra("Week", week);
                 StartActivityForResult(intent, 514);
             };
+            FindViewById<Button>(Resource.Id.AnotherAddClassButton).Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(CreateClassActivity));
+                intent.PutExtra("Week", week);
+                StartActivityForResult(intent, 514);
+            };
+            FindViewById<ImageButton>(Resource.Id.PrevDayButton).Click += (sender, e) =>
+            {
+                if (week == 0)
+                    week = 6;
+                else
+                    --week;
+                UpdateClasses();
+            };
+            FindViewById<ImageButton>(Resource.Id.NextDayButton).Click += (sender, e) =>
+            {
+                if (week == 6)
+                    week = 0;
+                else
+                    ++week;
+                UpdateClasses();
+            };
 
-            if (classes.Count == 0)
+            UpdateClasses();
+            FindViewById<ListView>(Resource.Id.ListViewClasses).ItemLongClick += (sender, e) =>
             {
-                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Visible;
-                FindViewById<Button>(Resource.Id.AddClassThisWeekButton).Visibility = ViewStates.Visible;
-                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Gone;
-            } else
-            {
-                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Gone;
-                FindViewById<Button>(Resource.Id.AddClassThisWeekButton).Visibility = ViewStates.Gone;
-                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Visible;
-            }
+                Intent intent = new Intent(this, typeof(DeleteClassActivity));
+                intent.PutExtra("Week", week);
+                intent.PutExtra("ClassPosition",
+                    ((ClassTime)FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter.GetItem(e.Position)).UUID);
+
+                StartActivityForResult(intent, 114);
+            };
 
             FindViewById<Button>(Resource.Id.SettingsButton).Click +=
                 (sender, e) =>
@@ -78,57 +125,9 @@ namespace XTCClassTime
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public bool OnDown(MotionEvent e)
-        {
-            //throw new System.NotImplementedException();
-            return false;
-        }
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            if (e1.GetX() - e2.GetX() > 10)
-            {
-                Toast.MakeText(this, "Wdnmd", ToastLength.Long);
-                Intent intent = new Intent(this, typeof(SettingsActivity));
-                StartActivity(intent);
-                return true;
-            }
-            return false;
-        }
-        public void OnLongPress(MotionEvent e)
-        {
-            //return false;
-        }
-        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-        {
-            return false;
-        }
-        public void OnShowPress(MotionEvent e)
-        {
-            //throw new System.NotImplementedException();
-        }
-        public bool OnSingleTapUp(MotionEvent e)
-        {
-            return false;
-        }
-
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
-            var classes = DataController.GetClasses((int)DateTime.Now.DayOfWeek);
-            FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter = 
-                new ClassTimeAdapter(this, classes);
-            FindViewById<ListView>(Resource.Id.ListViewClasses).Invalidate();
-            if (classes.Count == 0)
-            {
-                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Visible;
-                FindViewById<Button>(Resource.Id.AddClassThisWeekButton).Visibility = ViewStates.Visible;
-                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Gone;
-            }
-            else
-            {
-                FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Gone;
-                FindViewById<Button>(Resource.Id.AddClassThisWeekButton).Visibility = ViewStates.Gone;
-                FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Visible;
-            }
+            UpdateClasses();
         }
     }
 }
