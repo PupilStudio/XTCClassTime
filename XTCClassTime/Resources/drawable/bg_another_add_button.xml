@@ -2,13 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_pressed="false">
     <layer-list>
-      <item android:drawable="@drawable/menu"/>
+      <item android:drawable="@drawable/add"/>
     </layer-list>
   </item>
 
   <item android:state_pressed="true">
     <layer-list>
-      <item android:drawable="@drawable/menu"/>
+      <item android:drawable="@drawable/add"/>
       <item>
         <shape>
           <gradient android:angle="0" android:endColor="#b3000000" android:startColor="#b3000000" android:type="linear" android:useLevel="true" />

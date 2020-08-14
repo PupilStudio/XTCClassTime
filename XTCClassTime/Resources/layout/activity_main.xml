@@ -26,18 +26,20 @@
                 android:layout_width="45px"
                 android:layout_height="45px"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="80px"
+                android:layout_marginRight="60px"
                 android:id="@+id/AnotherAddClassButton"
-                android:background="@drawable/add"/>
+                android:background="@drawable/bg_another_add_button"/>
             <Button
-                android:layout_height="70px"
-                android:layout_width="80px"
-                android:layout_marginTop="3.4dp"
+                android:layout_height="45px"
+                android:layout_width="45px"
+                android:layout_marginTop="12px"
+                android:layout_marginRight="5px"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/ic_menu_bg"
                 android:id="@+id/SettingsButton"/>
         </RelativeLayout>
         <RelativeLayout
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="30dp">
             <ImageButton

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/color_black" />
-    <item android:drawable="@drawable/splash_ic_back" />
-    <item android:gravity="center" android:drawable="@drawable/icon" 
+    <item android:drawable="@color/color_black" />    
+    <item android:gravity="center" android:drawable="@drawable/PupilStudio" 
           android:left="@dimen/dimen_splash_left" 
           android:top="@dimen/dimen_splash_top" 
           android:right="@dimen/dimen_splash_right" 
           android:bottom="@dimen/dimen_splash_bottom" />
+    <item android:drawable="@drawable/splash_ic_back" />
 </layer-list>

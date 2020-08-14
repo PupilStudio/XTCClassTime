@@ -4,6 +4,7 @@
     <layer-list>
       <item>
         <shape>
+          <corners android:bottomRightRadius="4dp" android:topRightRadius="4dp" android:bottomLeftRadius="4dp" android:topLeftRadius="4dp"/>
           <gradient android:angle="0" android:endColor="#802a2b2c" android:startColor="#802a2b2c" android:type="linear" android:useLevel="true" />
         </shape>
       </item>
@@ -14,11 +15,13 @@
     <layer-list>
       <item>
         <shape>
+          <corners android:bottomRightRadius="4dp" android:topRightRadius="4dp" android:bottomLeftRadius="4dp" android:topLeftRadius="4dp"/>
           <gradient android:angle="0" android:endColor="#802a2b2c" android:startColor="#802a2b2c" android:type="linear" android:useLevel="true" />
         </shape>
       </item>
       <item>
         <shape>
+          <corners android:bottomRightRadius="4dp" android:topRightRadius="4dp" android:bottomLeftRadius="4dp" android:topLeftRadius="4dp"/>
           <gradient android:angle="0" android:endColor="#b3000000" android:startColor="#b3000000" android:type="linear" android:useLevel="true" />
         </shape>
       </item>
