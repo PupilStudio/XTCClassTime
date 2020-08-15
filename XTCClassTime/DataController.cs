@@ -12,22 +12,7 @@ namespace XTCClassTime
         private const string CLASSES_PREFIX = "weekday";
 
         private const string IMAGES_DEFAULT =
-@"语文 Chinese
-数学 Math
-英语 English
-音乐 Music
-美术 Art
-体育 PE
-信息技术 Unknown
-班会 Unknown
-校本 Unknown
-道德与法治 Unknown
-历史 Unknown
-政治 Unknown
-地理 Unknown
-物理 Unknown
-化学 Unknown
-生物 Unknown";
+            "语文 Chinese\n数学 Math\n英语 English\n音乐 Music\n美术 Art\n体育 PE\n信息技术 Unknown\n班会 Unknown\n校本 Unknown\n道德与法治 Unknown\n历史 Unknown\n政治 Unknown\n地理 Unknown\n物理 Unknown\n化学 Unknown\n生物 Unknown";
 
         /// <summary>
         /// 删除一节课
@@ -129,6 +114,7 @@ namespace XTCClassTime
             switch (imgId)
             {
                 case "Chinese":
+                    return Resource.Drawable.Chinese;
                 case "Math":
                 case "English":
                 case "Music":

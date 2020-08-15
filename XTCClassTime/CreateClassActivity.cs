@@ -21,6 +21,7 @@ namespace XTCClassTime
     public class CreateClassActivity : AppCompatActivity
     {
         int begHour = -1, begMinute = -1, endHour = -1, endMinute = -1;
+        string chgUUID, chgSubject;
         int week;
         List<string> subjects;
 
@@ -33,7 +34,11 @@ namespace XTCClassTime
             }
             return s;
         }
-
+                
+        private int GetDisplayTime(int time)
+        {
+            return (time == -1) ? 0 : time;
+        }
         void LoadSubjects()
         {
             subjects = DataController.GetSubjects();
@@ -42,6 +47,18 @@ namespace XTCClassTime
             //subjects.Add("新建科目");
             FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).Adapter =
                 new ArrayAdapter(this, Resource.Layout.simple_spinner_xtc_item, subjects);
+            if (Intent.GetBooleanExtra("Edit", false) 
+                && FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).SelectedItem.ToString() == "选择科目")
+            {
+                for (int i = 0; i < subjects.Count; ++i)
+                {
+                    if (subjects[i] == chgSubject)
+                    {
+                        FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).SetSelection(i);
+                        break;
+                    }
+                }
+            }
         }
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -50,6 +67,21 @@ namespace XTCClassTime
             SupportActionBar.Hide();
 
             week = Intent.GetIntExtra("Week", 0);
+
+            if (Intent.GetBooleanExtra("Edit", false))
+            {
+                begHour = Intent.GetIntExtra("CurBeginHour", 0);
+                begMinute = Intent.GetIntExtra("CurBeginMinute", 0);
+                endHour = Intent.GetIntExtra("CurEndHour", 0);
+                endMinute = Intent.GetIntExtra("CurEndMinute", 0);
+                chgUUID = Intent.GetStringExtra("CurUUID");
+                chgSubject = Intent.GetStringExtra("CurSubject");
+                FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Text =
+                    "课程开始时间: " + FmtInt(begHour) + ":" + FmtInt(begMinute);
+                FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
+                    "课程结束时间: " + FmtInt(endHour) + ":" + FmtInt(endMinute);
+                FindViewById<Button>(Resource.Id.CreateClassButton).Text = "修改";
+            }
 
             string[] hours = new string[24], minutes = new string[60];
             for (int i = 0; i != 60; ++i)            {
@@ -72,7 +104,7 @@ namespace XTCClassTime
                                 "课程开始时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
                             begHour = _e.HourOfDay;
                             begMinute = _e.Minute;
-                        }, 0, 0, true);
+                        }, GetDisplayTime(begHour), GetDisplayTime(begMinute), true);
                     dialog.Show();
                 };
             FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Click +=
@@ -85,7 +117,7 @@ namespace XTCClassTime
                                 "课程结束时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
                             endHour = _e.HourOfDay;
                             endMinute = _e.Minute;
-                        }, 0, 0, true);
+                        }, GetDisplayTime(endHour), GetDisplayTime(endMinute), true);
                     dialog.Show();
                 };
 
@@ -128,6 +160,10 @@ namespace XTCClassTime
                     {
                         Toast.MakeText(this, "课程开始时间必须早于课程结束时间!", ToastLength.Short).Show();
                         return;
+                    }
+                    if (Intent.GetBooleanExtra("Edit", false))
+                    {
+                        DataController.RemoveClass(week, chgUUID);
                     }
                     ct.BeginHour = begHour;
                     ct.BeginMinute = begMinute;

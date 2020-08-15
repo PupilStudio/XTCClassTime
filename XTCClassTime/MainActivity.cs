@@ -3,16 +3,9 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
-using Java.Lang.Reflect;
-using Android.Gestures;
 using Android.Views;
 using Android.Content;
-using System.IO;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using Android.Util;
 using System;
-using System.Linq;
 
 // 杰哥不要
 
@@ -98,6 +91,19 @@ namespace XTCClassTime
             };
 
             UpdateClasses();
+            FindViewById<ListView>(Resource.Id.ListViewClasses).ItemClick += (sender, e) => {
+                var intent = new Intent(this, typeof(CreateClassActivity));
+                var curClass = (ClassTime)FindViewById<ListView>(Resource.Id.ListViewClasses).Adapter.GetItem(e.Position);
+                intent.PutExtra("Week", week);
+                intent.PutExtra("Edit", true); // editing
+                intent.PutExtra("CurBeginHour", curClass.BeginHour);
+                intent.PutExtra("CurEndHour", curClass.EndHour);
+                intent.PutExtra("CurBeginMinute", curClass.BeginMinute);
+                intent.PutExtra("CurEndMinute", curClass.EndMinute);
+                intent.PutExtra("CurUUID", curClass.UUID);
+                intent.PutExtra("CurSubject", curClass.ClassName);
+                StartActivityForResult(intent, 514);
+            };
             FindViewById<ListView>(Resource.Id.ListViewClasses).ItemLongClick += (sender, e) =>
             {
                 Intent intent = new Intent(this, typeof(DeleteClassActivity));
