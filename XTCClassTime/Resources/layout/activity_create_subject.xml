@@ -13,8 +13,23 @@
         android:layout_marginLeft="5dp"
         android:textSize="16sp"
         />
+    <EditText
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:tooltipText="输入科目名称"
+        android:id="@+id/InputSubjectName"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textColorHint="#FFFFFF"
+        android:background="@drawable/list_background_selector"
+        />
     <RelativeLayout
         android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <Button
@@ -26,7 +41,8 @@
             android:layout_height="36dp"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="9dp"
-            android:id="@+id/NewubjectImage"/>
+            android:id="@+id/NewubjectImage"
+            android:background="@drawable/DefaultX"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +50,45 @@
             android:id="@+id/NewSubjectColor"
             android:layout_marginLeft="55dp"
             android:layout_centerVertical="true"
+            android:textColor="#FFFFFFFF"
+            android:text="默认灰"/>
+        <ImageView
+            android:layout_width="72px"
+            android:layout_height="72px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/next_icon"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"     
+        android:orientation="vertical"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="79dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
             android:textColor="#FFFFFF"
-            android:text="NMSL"/>
+            android:background="@drawable/bg_dialog_button_cancel"
+            android:id="@+id/CancelCreateSubjectButton"
+            android:textSize="16sp"
+            android:text="取消"/>
+        <Button
+            android:layout_width="79dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="81dp"
+            android:id="@+id/CreateSubjectButton"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:background="@drawable/bg_dialog_button_decide"
+            android:text="添加"/>
     </RelativeLayout>
 </LinearLayout>

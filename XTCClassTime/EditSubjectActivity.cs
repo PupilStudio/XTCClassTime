@@ -15,6 +15,8 @@ namespace XTCClassTime
     [Activity(Label = "EditSubjectActivity")]
     public class EditSubjectActivity : Activity
     {
+        
+
         void UpdateSubjects()
         {
             var subjects = DataController.GetSubjectsImage();
@@ -27,8 +29,21 @@ namespace XTCClassTime
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_edit_subject);
+
+            FindViewById<Button>(Resource.Id.AddSubjectButton).Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(CreateSubjectActivity));
+                StartActivityForResult(intent, 981);
+            };
+            
             UpdateSubjects();
             // Create your application here
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            UpdateSubjects();
         }
     }
 }

@@ -179,5 +179,16 @@ namespace XTCClassTime
             }
             return images;
         }
+
+        public static void AddSubject(string subjectName, string color)
+        {
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            if (!File.Exists(imgConfFilePath))
+            {
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
+            }
+            File.WriteAllText(imgConfFilePath,
+                File.ReadAllText(imgConfFilePath) + subjectName + " " + color + "\n");
+        }
     }
 }

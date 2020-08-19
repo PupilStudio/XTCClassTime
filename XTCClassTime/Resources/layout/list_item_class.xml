@@ -8,19 +8,19 @@
         android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="3.5dp"
         android:background="@drawable/list_background_selector">
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="9dp"
+            android:layout_marginLeft="4dp"
             android:id="@+id/ClassImage"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="55dp"
+            android:layout_marginLeft="45dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"

@@ -86,6 +86,7 @@
     <Compile Include="ClassTime.cs" />
     <Compile Include="ClassTimeAdapter.cs" />
     <Compile Include="CreateClassActivity.cs" />
+    <Compile Include="CreateSubjectActivity.cs" />
     <Compile Include="DeleteClassActivity.cs" />
     <Compile Include="EditSubjectActivity.cs" />
     <Compile Include="MainActivity.cs" />
