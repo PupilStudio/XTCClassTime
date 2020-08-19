@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-
-using Android.App;
+﻿using System.Collections.Generic;
 using Android.Content;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
@@ -29,6 +20,7 @@ namespace XTCClassTime
             }
             return s;
         }
+
         public ClassTimeAdapter(Context context, List<ClassTime> cts)
         {
             con = context;
@@ -64,15 +56,15 @@ namespace XTCClassTime
             }
             else
             {
-                view = convertView;//直接对convertView进行重用
+                view = convertView; //直接对convertView进行重用
             }
             ImageView classImg = view.FindViewById<ImageView>(Resource.Id.ClassImage);
             TextView className = view.FindViewById<TextView>(Resource.Id.ClassName);
             TextView classTime = view.FindViewById<TextView>(Resource.Id.ClassTime);
 
             classImg.SetImageResource(DataController.GetClassImage(ct.ClassName));
-            className.Text = ct.ClassName;
-            classTime.Text = FmtInt(ct.BeginHour) + ":" + FmtInt(ct.BeginMinute) + " - " 
+            className.Text = (position + 1).ToString() + ". " + ct.ClassName;
+            classTime.Text = /* "第" + (position + 1).ToString() + "节\n" + */ FmtInt(ct.BeginHour) + ":" + FmtInt(ct.BeginMinute) + " - " 
                 + FmtInt(ct.EndHour) + ":" + FmtInt(ct.EndMinute);
 
             //fill in your items

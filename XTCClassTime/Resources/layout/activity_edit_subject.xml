@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EditSubject"
+            android:id="@+id/MainCaptionTextView"                
+            android:textColor="#FF8502"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="16sp"/>
+        <Button
+            android:layout_marginTop="12px"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:id="@+id/AddSubjectButton"
+            android:background="@drawable/bg_another_add_button"/>
+    </RelativeLayout>
+    <ListView
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SubjectsList"/>
+</LinearLayout>

@@ -81,6 +81,7 @@ namespace XTCClassTime
                 FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
                     "课程结束时间: " + FmtInt(endHour) + ":" + FmtInt(endMinute);
                 FindViewById<Button>(Resource.Id.CreateClassButton).Text = "修改";
+                FindViewById<TextView>(Resource.Id.AddClassTextView).Text = "修改课程";
             }
 
             string[] hours = new string[24], minutes = new string[60];

@@ -118,9 +118,12 @@ namespace XTCClassTime
                 (sender, e) =>
                 {
                     //GetClassesProfile();
-                    var intent = new Intent(this, typeof(WeekPickerActivity));
+                    //var intent = new Intent(this, typeof(WeekPickerActivity));
                     //var intent = new Intent(this, typeof(DeleteClassActivity));
-                    StartActivityForResult(intent, 514);
+                    //StartActivityForResult(intent, 514);
+                    //ShareHelper.ShareText(this, "课程表支持分享啦!");
+                    var intent = new Intent(this, typeof(EditSubjectActivity));
+                    StartActivityForResult(intent, 191);
                 };
 
         }

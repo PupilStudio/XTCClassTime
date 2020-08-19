@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace XTCClassTime
 {
-    class ClassImage : Java.Lang.Object
+    public class ClassImage : Java.Lang.Object
     {
         public string DisplayName;
         public string Name;

@@ -76,7 +76,7 @@ namespace XTCClassTime
         {
             if (genUUID)
                 ct.UUID = System.Guid.NewGuid().ToString();
-            string dataFilePath = System.IO.Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
+            string dataFilePath = Path.Combine(DATA_PATH, CLASSES_PREFIX + week.ToString() + ".config");
             if (!File.Exists(dataFilePath))
             {
                 File.WriteAllText(dataFilePath, "");
@@ -114,15 +114,20 @@ namespace XTCClassTime
             switch (imgId)
             {
                 case "Chinese":
-                    return Resource.Drawable.Chinese;
+                    return Resource.Drawable.ChineseX;
                 case "Math":
+                    return Resource.Drawable.MathX;
                 case "English":
+                    return Resource.Drawable.EnglishX;
                 case "Music":
+                    return Resource.Drawable.MusicX;
                 case "Art":
+                    return Resource.Drawable.ArtX;
                 case "PE":
+                    return Resource.Drawable.PEX;
                 case "Unknown":
                 default:
-                    return Resource.Drawable.UnknownClass;
+                    return Resource.Drawable.DefaultX;
             }
         }
 
@@ -149,6 +154,30 @@ namespace XTCClassTime
                 subjects.Add(vss[0]);
             }
             return subjects;
+        }
+
+        public static List<ClassImage> GetSubjectsImage()
+        {
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            if (!File.Exists(imgConfFilePath))
+            {
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
+            }
+            string imgConfig = File.ReadAllText(imgConfFilePath);
+
+            string[] vs = imgConfig.Split('\n');
+            List<ClassImage> images = new List<ClassImage>();
+            foreach (var i in vs)
+            {
+                if (i.Trim() == "")
+                    continue;
+                string[] vss = i.Split(' ');
+                ClassImage ci = new ClassImage();
+                ci.DisplayName = vss[0];
+                ci.Name = vss[1];
+                images.Add(ci);
+            }
+            return images;
         }
     }
 }
