@@ -89,6 +89,54 @@ namespace XTCClassTime
         /// 根据课程名称返回对应的图像
         /// </summary>
         /// <param name="name">课程名称</param>
+        /// <param name="subjName">输出课程的颜色</param>
+        /// <returns>对应图片的id</returns>
+        public static int GetClassImage(string name, out string subjName)
+        {
+            List<string> classes = new List<string>(), imgids = new List<string>();
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            if (!File.Exists(imgConfFilePath))
+            {
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
+            }
+            string imgConfig = File.ReadAllText(imgConfFilePath);
+
+            string[] vs = imgConfig.Split('\n');
+            foreach(var i in vs)
+            {
+                if (i.Trim() == "")
+                    continue;
+                string[] vss = i.Split(' ');
+                classes.Add(vss[0]);
+                imgids.Add(vss[1]);
+            }
+
+            string imgId = imgids[classes.FindIndex((a) => a == name)];
+            subjName = imgId;
+            switch (imgId)
+            {
+                case "Chinese":
+                    return Resource.Drawable.ChineseX;
+                case "Math":
+                    return Resource.Drawable.MathX;
+                case "English":
+                    return Resource.Drawable.EnglishX;
+                case "Music":
+                    return Resource.Drawable.MusicX;
+                case "Art":
+                    return Resource.Drawable.ArtX;
+                case "PE":
+                    return Resource.Drawable.PEX;
+                case "Unknown":
+                default:
+                    return Resource.Drawable.DefaultX;
+            }
+        }
+
+        /// <summary>
+        /// 根据课程名称返回对应的图像
+        /// </summary>
+        /// <param name="name">课程名称</param>
         /// <returns>对应图片的id</returns>
         public static int GetClassImage(string name)
         {
@@ -101,7 +149,7 @@ namespace XTCClassTime
             string imgConfig = File.ReadAllText(imgConfFilePath);
 
             string[] vs = imgConfig.Split('\n');
-            foreach(var i in vs)
+            foreach (var i in vs)
             {
                 if (i.Trim() == "")
                     continue;

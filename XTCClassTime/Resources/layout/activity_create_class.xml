@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,45 +12,14 @@
         android:layout_marginTop="6dp"
         android:layout_marginLeft="5dp"
         android:textSize="16sp"
-        />
-    <Spinner
-        android:layout_marginTop="5dp"
-        android:layout_width="320dp"
-        android:layout_height="30dp"
-        android:id="@+id/SpinnerChooseClass"/>
+        />    
     
-    <TextView
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请选择课程开始时间"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CDFFFFFF"
-        android:textSize="16sp"
-        android:clickable="true"
-        android:id="@+id/SwitchBeginTimeTextView"/>
-    
-    <TextView
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请选择课程结束时间"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CDFFFFFF"
-        android:textSize="16sp"
-        android:clickable="true"
-        android:id="@+id/SwitchEndTimeTextView"/>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"     
-        android:orientation="vertical"/>
-    <RelativeLayout
+    <RelativeLayout        
+        android:id="@+id/YajuuSenpai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
         <Button
             android:layout_width="79dp"
@@ -72,4 +41,120 @@
             android:background="@drawable/bg_dialog_button_decide"
             android:text="添加"/>
     </RelativeLayout>
-</LinearLayout>
+    <ScrollView
+        android:layout_above="@id/YajuuSenpai"
+        android:layout_below="@id/AddClassTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:layout_marginTop="5dp"
+                android:layout_width="320dp"
+                android:layout_height="30dp"
+                android:id="@+id/SpinnerChooseClass"/>
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/SwitchBeginTimeButton"
+                    android:background="@drawable/list_background_selector"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="结束时间"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="12sp"
+                        android:text="给爷爬"
+                        android:textColor="#CDFFFFFF"
+                        android:id="@+id/BeginTimeText"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="72px"
+                    android:layout_height="72px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/next_icon"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="请选择课程开始时间"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CDFFFFFF"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:id="@+id/SwitchBeginTimeTextView"/>
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/SwitchEndTimeButton"
+                    android:background="@drawable/list_background_selector"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="开始时间"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="12sp"
+                        android:text="给爷爬"
+                        android:textColor="#CDFFFFFF"
+                        android:id="@+id/EndTimeText"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="72px"
+                    android:layout_height="72px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/next_icon"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="请选择课程结束时间"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CDFFFFFF"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:id="@+id/SwitchEndTimeTextView"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

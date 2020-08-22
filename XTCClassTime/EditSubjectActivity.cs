@@ -14,9 +14,7 @@ namespace XTCClassTime
 {
     [Activity(Label = "EditSubjectActivity")]
     public class EditSubjectActivity : Activity
-    {
-        
-
+    {      
         void UpdateSubjects()
         {
             var subjects = DataController.GetSubjectsImage();
@@ -34,6 +32,15 @@ namespace XTCClassTime
             {
                 var intent = new Intent(this, typeof(CreateSubjectActivity));
                 StartActivityForResult(intent, 981);
+            };
+
+            FindViewById<ListView>(Resource.Id.SubjectsList).ItemClick += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(CreateSubjectActivity));
+                intent.PutExtra("Edit", true);
+                intent.PutExtra("Name",
+                    ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName);
+                StartActivityForResult(intent, 364);
             };
             
             UpdateSubjects();
