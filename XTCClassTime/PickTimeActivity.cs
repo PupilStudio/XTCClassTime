@@ -32,6 +32,9 @@ namespace XTCClassTime
             hourText = FindViewById<TextView>(Resource.Id.HourText);
             minuteText = FindViewById<TextView>(Resource.Id.MinuteText);
 
+            FindViewById<TextView>(Resource.Id.TimePickerTitle).Text = Intent.GetStringExtra("Title");
+            minutes = Intent.GetIntExtra("Minutes", 0);
+
             FindViewById<ImageButton>(Resource.Id.AddHour).Click += (sender, e) =>
             {
                 minutes += 60;
@@ -80,11 +83,13 @@ namespace XTCClassTime
             };
             FindViewById<Button>(Resource.Id.PickTimeButton).Click += (sender, e) =>
             {
-                Intent.PutExtra("RETURN_MINUTES", minutes);
-                this.SetResult(Result.Ok);
+                var intent = new Intent();
+                DataController.PickedMinute = minutes;
+                this.SetResult(Result.Ok, intent);
                 this.Finish();
             };
 
+            RefreshView();
             // Create your application here
         }
     }

@@ -35,6 +35,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:stateListAnimator="@null"
             android:background="@drawable/list_background_selector"/>
         <ImageView
             android:layout_width="36dp"

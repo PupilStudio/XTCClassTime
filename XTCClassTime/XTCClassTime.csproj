@@ -170,9 +170,6 @@
     <AndroidResource Include="Resources\layout\list_item_class.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\UnknownClass.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\list_background_selector.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -362,6 +359,9 @@
     <AndroidResource Include="Resources\drawable\bg_minus_30dp.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\test_icon_1_small.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -2,10 +2,10 @@
 <layer-list
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/color_black" />    
-    <item android:gravity="center" android:drawable="@drawable/PupilStudio" 
-          android:left="@dimen/dimen_splash_left" 
-          android:top="@dimen/dimen_splash_top" 
-          android:right="@dimen/dimen_splash_right" 
-          android:bottom="@dimen/dimen_splash_bottom" />
+    <item android:gravity="center" android:drawable="@drawable/test_icon_1_small" 
+          android:left="140dp" 
+          android:top="160dp" 
+          android:right="140dp" 
+          android:bottom="160dp" />
     <item android:drawable="@drawable/splash_ic_back" />
 </layer-list>

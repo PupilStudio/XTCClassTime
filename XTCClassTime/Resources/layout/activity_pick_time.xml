@@ -14,7 +14,7 @@
         android:textSize="16sp"
         />
     <ImageButton
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:layout_marginLeft="25dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="15dp"
         android:textSize="16sp"
         android:textAlignment="center"
@@ -33,12 +33,12 @@
     <ImageButton
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="97dp"
         android:layout_marginLeft="25dp"
         android:id="@+id/MinusHour"
         android:background="@drawable/bg_minus_30dp"/>
     <ImageButton
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:layout_marginRight="25dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -48,7 +48,7 @@
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="70dp"
         android:layout_marginRight="15dp"
         android:textSize="16sp"
         android:textAlignment="center"
@@ -59,7 +59,7 @@
     <ImageButton
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="97dp"
         android:layout_marginRight="25dp"
         android:layout_alignParentRight="true"
         android:id="@+id/MinusMinute"

@@ -14,6 +14,7 @@ using Android.Util;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Org.Apache.Http.Entity;
 
 namespace XTCClassTime
 {
@@ -44,7 +45,7 @@ namespace XTCClassTime
             subjects = DataController.GetSubjects();
             subjects.Insert(0, "选择科目");
             // TODO: 用户自定义科目
-            //subjects.Add("新建科目");
+            subjects.Add("新建科目");
             FindViewById<Spinner>(Resource.Id.SpinnerChooseClass).Adapter =
                 new ArrayAdapter(this, Resource.Layout.simple_spinner_xtc_item, subjects);
             if (Intent.GetBooleanExtra("Edit", false) 
@@ -76,10 +77,8 @@ namespace XTCClassTime
                 endMinute = Intent.GetIntExtra("CurEndMinute", 0);
                 chgUUID = Intent.GetStringExtra("CurUUID");
                 chgSubject = Intent.GetStringExtra("CurSubject");
-                FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Text =
-                    "课程开始时间: " + FmtInt(begHour) + ":" + FmtInt(begMinute);
-                FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
-                    "课程结束时间: " + FmtInt(endHour) + ":" + FmtInt(endMinute);
+                FindViewById<TextView>(Resource.Id.BeginTimeText).Text = FmtInt(begHour) + " : " + FmtInt(begMinute);
+                FindViewById<TextView>(Resource.Id.EndTimeText).Text = FmtInt(endHour) + " : " + FmtInt(endMinute);
                 FindViewById<Button>(Resource.Id.CreateClassButton).Text = "修改";
                 FindViewById<TextView>(Resource.Id.AddClassTextView).Text = "修改课程";
             }
@@ -95,31 +94,21 @@ namespace XTCClassTime
             }
 
 
-            FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Click +=
+            FindViewById<TextView>(Resource.Id.SwitchBeginTimeButton).Click +=
                 (sender, e) =>
                 {
-                    TimePickerDialog dialog = new TimePickerDialog(this,
-                        (_sender, _e) =>
-                        {
-                            FindViewById<TextView>(Resource.Id.SwitchBeginTimeTextView).Text =
-                                "课程开始时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
-                            begHour = _e.HourOfDay;
-                            begMinute = _e.Minute;
-                        }, GetDisplayTime(begHour), GetDisplayTime(begMinute), true);
-                    dialog.Show();
+                    var intent = new Intent(this, typeof(PickTimeActivity));
+                    intent.PutExtra("Title", "选择课程开始时间");
+                    intent.PutExtra("Minutes", GetDisplayTime(begHour) * 60 + GetDisplayTime(begMinute));
+                    StartActivityForResult(intent, 4);
                 };
-            FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Click +=
+            FindViewById<TextView>(Resource.Id.SwitchEndTimeButton).Click +=
                 (sender, e) =>
                 {
-                    TimePickerDialog dialog = new TimePickerDialog(this,
-                        (_sender, _e) =>
-                        {
-                            FindViewById<TextView>(Resource.Id.SwitchEndTimeTextView).Text =
-                                "课程结束时间: " + FmtInt(_e.HourOfDay) + ":" + FmtInt(_e.Minute);
-                            endHour = _e.HourOfDay;
-                            endMinute = _e.Minute;
-                        }, GetDisplayTime(endHour), GetDisplayTime(endMinute), true);
-                    dialog.Show();
+                    var intent = new Intent(this, typeof(PickTimeActivity));
+                    intent.PutExtra("Title", "选择课程结束时间");
+                    intent.PutExtra("Minutes", GetDisplayTime(endHour) * 60 + GetDisplayTime(endMinute));
+                    StartActivityForResult(intent, 5);
                 };
 
             LoadSubjects();
@@ -128,8 +117,8 @@ namespace XTCClassTime
                 {
                     if(subjects[e.Position] == "新建科目")
                     {
-                        // TODO: Call 
-                        LoadSubjects(); //刷新列表
+                        var intent = new Intent(this, typeof(CreateSubjectActivity));
+                        StartActivityForResult(intent, 9198);                        
                     }
                 };
             FindViewById<Button>(Resource.Id.CancelCreateClassButton).Click +=
@@ -178,6 +167,27 @@ namespace XTCClassTime
                 };
 
             // Create your application here
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == 4 && resultCode == Result.Ok)
+            {
+                begHour = DataController.PickedMinute / 60;
+                begMinute = DataController.PickedMinute % 60;
+                FindViewById<TextView>(Resource.Id.BeginTimeText).Text = FmtInt(begHour) + " : " + FmtInt(begMinute);
+            }
+            if (requestCode == 5 && resultCode == Result.Ok)
+            {
+                endHour = DataController.PickedMinute / 60;
+                endMinute = DataController.PickedMinute % 60;
+                FindViewById<TextView>(Resource.Id.EndTimeText).Text = FmtInt(endHour) + " : " + FmtInt(endMinute);
+            }
+            if (requestCode == 9198)
+            {
+                LoadSubjects(); //刷新列表
+            }
         }
     }
 }
