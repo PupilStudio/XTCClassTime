@@ -16,12 +16,12 @@ namespace XTCClassTime
     public class PickTimeActivity : Activity
     {
         TextView hourText, minuteText;
-        int minutes = 0;
+        int hours = 0, minutes = 0;
 
         void RefreshView()
         {
-            hourText.Text = (minutes / 60).ToString() + "时";
-            minuteText.Text = (minutes % 60).ToString() + "分";
+            hourText.Text = hours.ToString() + "时";
+            minuteText.Text = minutes.ToString() + "分";
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,47 +33,63 @@ namespace XTCClassTime
             minuteText = FindViewById<TextView>(Resource.Id.MinuteText);
 
             FindViewById<TextView>(Resource.Id.TimePickerTitle).Text = Intent.GetStringExtra("Title");
-            minutes = Intent.GetIntExtra("Minutes", 0);
+            hours = Intent.GetIntExtra("Minutes", 0) / 60;
+            minutes = Intent.GetIntExtra("Minutes", 0) % 60;
 
             FindViewById<ImageButton>(Resource.Id.AddHour).Click += (sender, e) =>
             {
-                minutes += 60;
+                ++hours;
+                if (hours == 24)
+                    hours = 0;
+                RefreshView();
+            };
+            FindViewById<ImageButton>(Resource.Id.AddHour).LongClick += (sender, e) => {
+                hours += 12;
+                if (hours >= 24)
+                    hours -= 24;
                 RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.AddMinute).Click += (sender, e) => 
             {
-                minutes += 1;
+                ++minutes;
+                if (minutes == 60)
+                    minutes = 0;
                 RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.AddMinute).LongClick += (sender, e) =>
             {
                 minutes += 10;
+                if (minutes >= 60)
+                    minutes -= 60;
                 RefreshView();
             };
 
             FindViewById<ImageButton>(Resource.Id.MinusHour).Click += (sender, e) =>
             {
-                if (minutes >= 60)
-                {
-                    minutes -= 60;
-                    RefreshView();
-                }
+                --hours;
+                if (hours < 0)
+                    hours = 23;
+                RefreshView();
+            };
+            FindViewById<ImageButton>(Resource.Id.MinusHour).LongClick += (sender, e) => {
+                hours -= 12;
+                if (hours < 0)
+                    hours += 24;
+                RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.MinusMinute).Click += (sender, e) =>
             {
-                if (minutes >= 1)
-                {
-                    minutes -= 1;
-                    RefreshView();
-                }
+                minutes -= 1;
+                if (minutes < 0)
+                    minutes = 59;
+                RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.MinusMinute).LongClick += (sender, e) =>
             {
-                if (minutes >= 10)
-                {
-                    minutes -= 10;
-                    RefreshView();
-                }
+                minutes -= 10;
+                if (minutes < 0)
+                    minutes += 60;
+                RefreshView();
             };
 
             FindViewById<Button>(Resource.Id.CancelPickTimeButton).Click += (sender, e) =>
@@ -84,7 +100,7 @@ namespace XTCClassTime
             FindViewById<Button>(Resource.Id.PickTimeButton).Click += (sender, e) =>
             {
                 var intent = new Intent();
-                DataController.PickedMinute = minutes;
+                DataController.PickedMinute = hours * 60 + minutes;
                 this.SetResult(Result.Ok, intent);
                 this.Finish();
             };

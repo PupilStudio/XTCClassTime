@@ -11,7 +11,7 @@
         android:textColor="#FF8502"
         android:layout_marginTop="6dp"
         android:layout_marginLeft="5dp"
-        android:textSize="16sp"
+        android:textSize="16sp"        
         />
     <EditText
         android:layout_marginTop="5dp"
@@ -24,6 +24,8 @@
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:textColorHint="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="@drawable/list_background_selector"
         />
     <RelativeLayout
