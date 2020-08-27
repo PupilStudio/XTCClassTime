@@ -59,6 +59,7 @@ namespace XTCClassTime
             SetContentView(Resource.Layout.activity_main);
 
             SupportActionBar.Hide();
+            ForbidReceiver.Register(this);
 
             week = (int)DateTime.Now.DayOfWeek;
             FindViewById<Button>(Resource.Id.AddClassTodayButton).Click += (sender, e) =>

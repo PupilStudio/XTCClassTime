@@ -72,7 +72,17 @@ namespace XTCClassTime
                     Toast.MakeText(this, "科目名称太长了, 换一个吧!", ToastLength.Long).Show();
                     return;
                 }
-                if (dispName == "选择科目" || dispName == "新建科目")
+                if (dispName.Trim().Length == 0)
+                {
+                    Toast.MakeText(this, "请输入科目名称!", ToastLength.Long).Show();
+                    return;
+                }
+                if (dispName.Contains(' '))
+                {
+                    Toast.MakeText(this, "科目名称不允许含有空格!", ToastLength.Long).Show();
+                    return;
+                }
+                if (dispName == "未选择" || dispName == "新建科目")
                 {
                     Toast.MakeText(this, "此名称不允许使用!", ToastLength.Long).Show();
                     return;

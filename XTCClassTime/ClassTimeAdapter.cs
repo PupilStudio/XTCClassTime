@@ -61,9 +61,11 @@ namespace XTCClassTime
             ImageView classImg = view.FindViewById<ImageView>(Resource.Id.ClassImage);
             TextView className = view.FindViewById<TextView>(Resource.Id.ClassName);
             TextView classTime = view.FindViewById<TextView>(Resource.Id.ClassTime);
+            TextView classOrder = view.FindViewById<TextView>(Resource.Id.ClassOrderTextView);
 
             classImg.SetImageResource(DataController.GetClassImage(ct.ClassName));
-            className.Text = (position + 1).ToString() + ". " + ct.ClassName;
+            className.Text = ct.ClassName;
+            classOrder.Text = (position + 1).ToString();
             classTime.Text = /* "第" + (position + 1).ToString() + "节\n" + */ FmtInt(ct.BeginHour) + ":" + FmtInt(ct.BeginMinute) + " - " 
                 + FmtInt(ct.EndHour) + ":" + FmtInt(ct.EndMinute);
 

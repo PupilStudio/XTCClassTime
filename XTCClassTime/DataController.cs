@@ -15,6 +15,7 @@ namespace XTCClassTime
             "语文 Chinese\n数学 Math\n英语 English\n音乐 Music\n美术 Art\n体育 PE\n信息技术 Unknown\n班会 Unknown\n校本 Unknown\n道德与法治 Unknown\n历史 Unknown\n政治 Unknown\n地理 Unknown\n物理 Unknown\n化学 Unknown\n生物 Unknown";
 
         public static int PickedMinute = 0; // UGLY DESIGN!!
+        public static string PickedSubject = "未选择"; // UGLY DESIGN!!
 
         /// <summary>
         /// 删除一节课

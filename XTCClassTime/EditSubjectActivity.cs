@@ -34,14 +34,28 @@ namespace XTCClassTime
                 StartActivityForResult(intent, 981);
             };
 
-            FindViewById<ListView>(Resource.Id.SubjectsList).ItemClick += (sender, e) =>
+            if (Intent.GetBooleanExtra("Select", false))
             {
-                var intent = new Intent(this, typeof(CreateSubjectActivity));
-                intent.PutExtra("Edit", true);
-                intent.PutExtra("Name",
-                    ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName);
-                StartActivityForResult(intent, 364);
-            };
+                FindViewById<TextView>(Resource.Id.MainCaptionTextView).Text = "选择科目";
+                FindViewById<ListView>(Resource.Id.SubjectsList).ItemClick += (sender, e) =>
+                {
+                    DataController.PickedSubject =
+                        ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName;
+                    this.SetResult(Result.Ok);
+                    this.Finish();
+                };
+            }
+            else
+            {
+                FindViewById<ListView>(Resource.Id.SubjectsList).ItemClick += (sender, e) =>
+                {
+                    var intent = new Intent(this, typeof(CreateSubjectActivity));
+                    intent.PutExtra("Edit", true);
+                    intent.PutExtra("Name",
+                        ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName);
+                    StartActivityForResult(intent, 364);
+                };
+            }
             
             UpdateSubjects();
             // Create your application here

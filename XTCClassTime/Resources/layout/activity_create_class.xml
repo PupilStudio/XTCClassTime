@@ -50,11 +50,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Spinner
-                android:layout_marginTop="5dp"
-                android:layout_width="320dp"
-                android:layout_height="30dp"
-                android:id="@+id/SpinnerChooseClass"/>
             <RelativeLayout
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
@@ -65,28 +60,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:stateListAnimator="@null"
-                    android:id="@+id/SwitchBeginTimeButton"
+                    android:id="@+id/SwitchSubjectButton"
                     android:background="@drawable/list_background_selector"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="8dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:text="开始时间"
+                        android:id="@+id/SubjectNameText"
                         android:textColor="#FFFFFF"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:textSize="12sp"
-                        android:text="未选择"
-                        android:textColor="#CDFFFFFF"
-                        android:id="@+id/BeginTimeText"/>
+                        android:text="科目"
+                        android:textColor="#CDFFFFFF"/>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="72px"
@@ -105,6 +99,48 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:stateListAnimator="@null"
+                    android:id="@+id/SwitchBeginTimeButton"
+                    android:background="@drawable/list_background_selector"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:id="@+id/BeginTimeText"
+                        android:text="未选择"
+                        android:textColor="#FFFFFF"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="12sp"
+                        android:textColor="#CDFFFFFF"
+                        android:text="开始时间"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="72px"
+                    android:layout_height="72px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/next_icon"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/SwitchEndTimeButton"
                     android:stateListAnimator="@null"
                     android:background="@drawable/list_background_selector"/>
@@ -112,22 +148,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="8dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:text="结束时间"
+                        android:text="未选择"
+                        android:id="@+id/EndTimeText"                        
                         android:textColor="#FFFFFF"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:textSize="12sp"
-                        android:text="未选择"
                         android:textColor="#CDFFFFFF"
-                        android:id="@+id/EndTimeText"/>
+                        android:text="结束时间"/>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="72px"

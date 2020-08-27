@@ -89,6 +89,7 @@
     <Compile Include="CreateSubjectActivity.cs" />
     <Compile Include="DeleteClassActivity.cs" />
     <Compile Include="EditSubjectActivity.cs" />
+    <Compile Include="ForbidReceiver.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="DataController.cs" />
     <Compile Include="PickTimeActivity.cs" />
@@ -362,6 +363,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\test_icon_1_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\main_screencap_background.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

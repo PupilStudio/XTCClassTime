@@ -8,19 +8,29 @@
         android:layout_height="60dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="3.5dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/list_background_selector">
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="9dp"
             android:id="@+id/ClassImage"/>
+        <TextView
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="9dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:paddingTop="4dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/ClassOrderTextView"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="55dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"

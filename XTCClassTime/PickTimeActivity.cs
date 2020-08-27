@@ -44,7 +44,7 @@ namespace XTCClassTime
                 RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.AddHour).LongClick += (sender, e) => {
-                hours += 12;
+                hours += 4;
                 if (hours >= 24)
                     hours -= 24;
                 RefreshView();
@@ -72,7 +72,7 @@ namespace XTCClassTime
                 RefreshView();
             };
             FindViewById<ImageButton>(Resource.Id.MinusHour).LongClick += (sender, e) => {
-                hours -= 12;
+                hours -= 4;
                 if (hours < 0)
                     hours += 24;
                 RefreshView();
