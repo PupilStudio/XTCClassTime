@@ -142,7 +142,16 @@ namespace XTCClassTime
                     ct.BeginMinute = begMinute;
                     ct.EndHour = endHour;
                     ct.EndMinute = endMinute;
-                    DataController.AddClass(week, ct);
+                    try
+                    {
+                        DataController.AddClass(week, ct);
+                    }
+                    catch (System.Exception)
+                    {
+                        Toast.MakeText(this, "课程冲突!", ToastLength.Long).Show();
+                        return;
+                    }
+
                     Toast.MakeText(this, "课程添加成功!", ToastLength.Short);
                     this.SetResult(Result.Ok);
                     this.Finish();

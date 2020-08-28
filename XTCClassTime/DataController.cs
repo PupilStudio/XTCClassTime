@@ -84,6 +84,17 @@ namespace XTCClassTime
             {
                 File.WriteAllText(dataFilePath, "");
             }
+            var classes = GetClasses(week);
+            foreach (var i in classes)
+            {
+                if ((i.BeginHour * 60 + i.BeginMinute <= ct.BeginHour * 60 + ct.BeginMinute
+                    && ct.BeginHour * 60 + ct.BeginMinute <= i.EndHour * 60 + i.EndMinute) ||
+                    (i.BeginHour * 60 + i.BeginMinute <= ct.EndHour * 60 + ct.EndMinute
+                    && ct.EndHour * 60 + ct.EndMinute <= i.EndHour * 60 + i.EndMinute))
+                {
+                    throw new System.Exception("CONFLICT CLASS!");
+                }
+            }
             File.WriteAllText(dataFilePath,
                 File.ReadAllText(dataFilePath) + ct.ToString() + '\n');
         }
