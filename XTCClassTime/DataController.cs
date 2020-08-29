@@ -16,6 +16,9 @@ namespace XTCClassTime
 
         public static int PickedMinute = 0; // UGLY DESIGN!!
         public static string PickedSubject = "未选择"; // UGLY DESIGN!!
+        public static int PickedColorResource = Resource.Drawable.DefaultX; // UGLY DESIGN!!
+        public static string PickedColorName = "默认灰";
+        public static string PickedColorIndent = "Unknown";
 
         /// <summary>
         /// 删除一节课
@@ -240,6 +243,32 @@ namespace XTCClassTime
             }
             File.WriteAllText(imgConfFilePath,
                 File.ReadAllText(imgConfFilePath) + subjectName + " " + color + "\n");
+        }
+
+        public static void ModifySubjectColor(string subjectName, string color)
+        {
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            if (!File.Exists(imgConfFilePath))
+            {
+                File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
+            }
+            string imgConfig = File.ReadAllText(imgConfFilePath);
+
+            string[] vs = imgConfig.Split('\n');
+            string content = "";
+            foreach (var i in vs)
+            {
+                if (i.Trim() == "")
+                    continue;
+                string[] vss = i.Split(' ');
+                string cur = i;
+                if (vss[0] == subjectName)
+                {
+                    cur = subjectName + " " + color;
+                }
+                content += cur + "\n";
+            }
+            File.WriteAllText(imgConfFilePath, content);
         }
     }
 }

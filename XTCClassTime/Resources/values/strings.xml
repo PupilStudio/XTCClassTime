@@ -6,5 +6,5 @@
     <string name="TodayClass">我的课程</string>
     <string name="NoClass">没有课程哦</string>
     <string name="TestToday">星期一 今天</string>
-    <string name="EditSubject">编辑科目</string>
+    <string name="EditSubject">管理科目</string>
 </resources>

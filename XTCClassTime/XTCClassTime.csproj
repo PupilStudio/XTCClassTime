@@ -92,6 +92,7 @@
     <Compile Include="ForbidReceiver.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="DataController.cs" />
+    <Compile Include="PickColorActivity.cs" />
     <Compile Include="PickTimeActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -140,12 +141,6 @@
     <AndroidResource Include="Resources\layout\activity_delete_class.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Delete.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\button_back.xml">
@@ -211,13 +206,7 @@
     <AndroidResource Include="Resources\drawable\delete_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_menu_bg.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu_press.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\alarm_add_large.png" />
@@ -226,16 +215,7 @@
     <AndroidResource Include="Resources\drawable\alarm_add_large_pressed.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\alarm_add_small.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\alarm_add_small_pressed.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\selector_alarm_add_large.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\selector_alarm_add_small.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_dialog_button_cancel.xml" />
@@ -327,24 +307,12 @@
     <AndroidResource Include="Resources\drawable\next_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\single_not_select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\single_select.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\DefaultX.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\test_icon_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\test_icon_2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\test_icon_3.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_add_30dp.xml">
@@ -362,10 +330,12 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\test_icon_1_small.png" />
+    <AndroidResource Include="Resources\drawable\main_screencap_background.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\main_screencap_background.png" />
+    <AndroidResource Include="Resources\layout\activity_pick_color.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

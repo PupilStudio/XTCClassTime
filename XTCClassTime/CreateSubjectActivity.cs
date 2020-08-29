@@ -26,7 +26,7 @@ namespace XTCClassTime
 
             if (Intent.GetBooleanExtra("Edit", false))
             {
-                FindViewById<ImageView>(Resource.Id.NewubjectImage).SetImageResource(
+                FindViewById<ImageView>(Resource.Id.NewSubjectImage).SetImageResource(
                     DataController.GetClassImage(Intent.GetStringExtra("Name"), out color));
                 FindViewById<EditText>(Resource.Id.InputSubjectName).Text = Intent.GetStringExtra("Name");
                 string dispColor;
@@ -56,8 +56,14 @@ namespace XTCClassTime
                 }
                 FindViewById<TextView>(Resource.Id.NewSubjectColor).Text = dispColor;
                 FindViewById<Button>(Resource.Id.CreateSubjectButton).Text = "修改";
+                FindViewById<TextView>(Resource.Id.AddSubjectTextView).Text = "编辑科目";
+                FindViewById<EditText>(Resource.Id.InputSubjectName).Enabled = false;
             }
 
+            FindViewById<Button>(Resource.Id.PickColorButton).Click += (sender, e) =>
+            {
+                StartActivityForResult(new Intent(this, typeof(PickColorActivity)), 9810);
+            };
             FindViewById<Button>(Resource.Id.CancelCreateSubjectButton).Click += (sender, e) =>
             {
                 this.SetResult(Result.Canceled);
@@ -88,20 +94,39 @@ namespace XTCClassTime
                     return;
                 }
 
-                var subjects = DataController.GetSubjects();
-                if (subjects.Contains(dispName))
+                if (Intent.GetBooleanExtra("Edit", false)) 
                 {
-                    Toast.MakeText(this, "科目重复了!", ToastLength.Long).Show();
-                    return;
+                    DataController.ModifySubjectColor(dispName, color);
+                    Toast.MakeText(this, "修改成功!", ToastLength.Short).Show();
                 }
+                else
+                {
+                    var subjects = DataController.GetSubjects();
+                    if (subjects.Contains(dispName))
+                    {
+                        Toast.MakeText(this, "科目重复了!", ToastLength.Long).Show();
+                        return;
+                    }
 
-                DataController.AddSubject(dispName, color);
-                Toast.MakeText(this, "添加成功!", ToastLength.Short).Show();
+                    DataController.AddSubject(dispName, color);
+                    Toast.MakeText(this, "添加成功!", ToastLength.Short).Show();
+                }
                 this.SetResult(Result.Ok);
                 this.Finish();
                 return;
             };
             // Create your application here
+        }
+
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == 9810 && resultCode == Result.Ok)
+            {
+                FindViewById<ImageView>(Resource.Id.NewSubjectImage).SetImageResource(DataController.PickedColorResource);
+                FindViewById<TextView>(Resource.Id.NewSubjectColor).Text = DataController.PickedColorName;
+                color = DataController.PickedColorIndent;
+            }
         }
     }
 }

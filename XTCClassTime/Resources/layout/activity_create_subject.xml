@@ -38,13 +38,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stateListAnimator="@null"
+            android:id="@+id/PickColorButton"
             android:background="@drawable/list_background_selector"/>
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="9dp"
-            android:id="@+id/NewubjectImage"
+            android:id="@+id/NewSubjectImage"
             android:background="@drawable/DefaultX"/>
         <TextView
             android:layout_width="wrap_content"
