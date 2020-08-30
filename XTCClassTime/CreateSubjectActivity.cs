@@ -108,6 +108,7 @@ namespace XTCClassTime
                         return;
                     }
 
+                    DataController.CreatedSubjectName = dispName;
                     DataController.AddSubject(dispName, color);
                     Toast.MakeText(this, "添加成功!", ToastLength.Short).Show();
                 }

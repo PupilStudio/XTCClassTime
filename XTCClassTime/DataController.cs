@@ -19,6 +19,7 @@ namespace XTCClassTime
         public static int PickedColorResource = Resource.Drawable.DefaultX; // UGLY DESIGN!!
         public static string PickedColorName = "默认灰";
         public static string PickedColorIndent = "Unknown";
+        public static string CreatedSubjectName = "";
 
         /// <summary>
         /// 删除一节课

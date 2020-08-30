@@ -241,9 +241,6 @@
     <AndroidResource Include="Resources\drawable\right.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\PupilStudio.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_another_add_button.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

@@ -65,6 +65,12 @@ namespace XTCClassTime
         {
             base.OnActivityResult(requestCode, resultCode, data);
             UpdateSubjects();
+            if (Intent.GetBooleanExtra("Select", false))
+            {
+                DataController.PickedSubject = DataController.CreatedSubjectName;
+                this.SetResult(Result.Ok);
+                this.Finish();
+            }
         }
     }
 }
