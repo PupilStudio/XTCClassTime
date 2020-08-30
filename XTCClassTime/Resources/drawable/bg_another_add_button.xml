@@ -8,12 +8,7 @@
 
   <item android:state_pressed="true">
     <layer-list>
-      <item android:drawable="@drawable/add"/>
-      <item>
-        <shape>
-          <gradient android:angle="0" android:endColor="#b3000000" android:startColor="#b3000000" android:type="linear" android:useLevel="true" />
-        </shape>
-      </item>
+      <item android:drawable="@drawable/add_press"/>
     </layer-list>
   </item>
 </selector>

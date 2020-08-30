@@ -24,7 +24,6 @@ namespace XTCClassTime
         int begHour = -1, begMinute = -1, endHour = -1, endMinute = -1;
         string chgUUID, chgSubject = "未选择";
         int week;
-        List<string> subjects;
 
         private string FmtInt(int x)
         {

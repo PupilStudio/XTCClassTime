@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关于作者"
+        android:textColor="#FF8502"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="16sp"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp">
+        <TextView            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:text=
+    "作者: pupilstudio\n\n如果您要反馈问题或提出建议, 请:\n\n(1)发邮件到pupilstudio@outlook.com\n\n(2)加入反馈QQ群1127340693\n\n*加入QQ群的后果由您自行承担，开发者不负任何责任。"/>
+    </ScrollView>
+</LinearLayout>

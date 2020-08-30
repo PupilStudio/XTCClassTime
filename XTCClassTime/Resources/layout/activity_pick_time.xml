@@ -14,12 +14,22 @@
         android:textSize="16sp"
         />
     <ImageButton
+        android:stateListAnimator="@null"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="25dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/AddHour"
         android:background="@drawable/bg_add_30dp"/>
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="25dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:text="+"/>
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -37,6 +47,15 @@
         android:layout_marginLeft="25dp"
         android:id="@+id/MinusHour"
         android:background="@drawable/bg_minus_30dp"/>
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginLeft="25dp"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:text="-"/>
     <ImageButton
         android:layout_marginTop="35dp"
         android:layout_marginRight="25dp"
@@ -45,6 +64,16 @@
         android:layout_alignParentRight="true"
         android:id="@+id/AddMinute"
         android:background="@drawable/bg_add_30dp"/>
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:text="+"/>
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -64,6 +93,16 @@
         android:layout_alignParentRight="true"
         android:id="@+id/MinusMinute"
         android:background="@drawable/bg_minus_30dp"/>
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="97dp"
+        android:layout_marginRight="25dp"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:text="-"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

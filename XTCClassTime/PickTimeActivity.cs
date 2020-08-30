@@ -106,6 +106,7 @@ namespace XTCClassTime
             };
 
             RefreshView();
+            Toast.MakeText(this, "长按+/-键试试吧!", ToastLength.Short).Show();
             // Create your application here
         }
     }

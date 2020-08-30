@@ -35,12 +35,14 @@ namespace XTCClassTime
                 FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Visible;
                 FindViewById<Button>(Resource.Id.AddClassTodayButton).Visibility = ViewStates.Visible;
                 FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Gone;
+                FindViewById<Button>(Resource.Id.AnotherAddClassButton).Visibility = ViewStates.Invisible;
             }
             else
             {
                 FindViewById<TextView>(Resource.Id.NoClassTextView).Visibility = ViewStates.Gone;
                 FindViewById<Button>(Resource.Id.AddClassTodayButton).Visibility = ViewStates.Gone;
                 FindViewById<ListView>(Resource.Id.ListViewClasses).Visibility = ViewStates.Visible;
+                FindViewById<Button>(Resource.Id.AnotherAddClassButton).Visibility = ViewStates.Visible;
             }
 
             string s;
@@ -123,8 +125,8 @@ namespace XTCClassTime
                     //var intent = new Intent(this, typeof(DeleteClassActivity));
                     //StartActivityForResult(intent, 514);
                     //ShareHelper.ShareText(this, "课程表支持分享啦!");
-                    var intent = new Intent(this, typeof(EditSubjectActivity));
-                    StartActivityForResult(intent, 191);
+                    //var intent = new Intent(this, typeof(EditSubjectActivity));
+                    StartActivityForResult(new Intent(this, typeof(MenuActivity)), 191);
                 };
 
         }
