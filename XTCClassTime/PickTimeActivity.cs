@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.IO;
 
 namespace XTCClassTime
 {
@@ -22,6 +23,18 @@ namespace XTCClassTime
         {
             hourText.Text = hours.ToString() + "时";
             minuteText.Text = minutes.ToString() + "分";
+        }
+
+        bool DoShowTip()
+        {
+            if (File.Exists("/data/data/cn.pupilstudio.xtcclasstime/.show_tip"))
+            {
+                return false;
+            } else
+            {
+                File.WriteAllText("/data/data/cn.pupilstudio.xtcclasstime/.show_tip", "114514");
+                return true;
+            }
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -106,7 +119,8 @@ namespace XTCClassTime
             };
 
             RefreshView();
-            Toast.MakeText(this, "长按+/-键试试吧!", ToastLength.Short).Show();
+            if (DoShowTip())
+                Toast.MakeText(this, "长按+/-键试试吧!", ToastLength.Long).Show();
             // Create your application here
         }
     }

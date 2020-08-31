@@ -22,6 +22,6 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:text=
-    "版本Beta 0.6。此版本为测试版本。\n\n此软件以GPL v3.0协议开放源代码。\n\n您可以在https://github.com/PupilStudio/XTCClassTime查看源代码。\n\n本软件仅限在小天才系列电话手表上运行。"/>
+    "版本RC 1。\n此版本为正式版本。\n\n此软件以GPL v3.0协议开放源代码。\n\n您可以在https://github.com/PupilStudio/XTCClassTime查看源代码。\n\n本软件仅限在小天才系列电话手表上运行。"/>
     </ScrollView>
 </LinearLayout>
