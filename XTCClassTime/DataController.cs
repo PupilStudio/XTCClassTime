@@ -1,5 +1,6 @@
 ﻿using Android.Util;
 using Android.Widget;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -12,14 +13,15 @@ namespace XTCClassTime
         private const string CLASSES_PREFIX = "weekday";
 
         private const string IMAGES_DEFAULT =
-            "语文 Chinese\n数学 Math\n英语 English\n音乐 Music\n美术 Art\n体育 PE\n信息技术 Unknown\n班会 Unknown\n校本 Unknown\n道德与法治 Unknown\n历史 Unknown\n政治 Unknown\n地理 Unknown\n物理 Unknown\n化学 Unknown\n生物 Unknown\n";
+            "语文 Chinese\n数学 Math\n英语 English\n音乐 Music\n美术 Art\n体育 PE\n科学 Unknown\n信息技术 Unknown\n班会 Unknown\n校本 Unknown\n道德与法治 Unknown\n历史 Unknown\n政治 Unknown\n地理 Unknown\n物理 Unknown\n化学 Unknown\n生物 Unknown\n";
 
         public static int PickedMinute = 0; // UGLY DESIGN!!
         public static string PickedSubject = "未选择"; // UGLY DESIGN!!
         public static int PickedColorResource = Resource.Drawable.DefaultX; // UGLY DESIGN!!
-        public static string PickedColorName = "默认灰";
-        public static string PickedColorIndent = "Unknown";
-        public static string CreatedSubjectName = "";
+        public static string PickedColorName = "默认灰"; // UGLY DESIGN!!
+        public static string PickedColorIndent = "Unknown"; // UGLY DESIGN!!
+        public static string CreatedSubjectName = ""; // UGLY DESIGN!!
+        public static Dictionary<string, bool> StartedActivity = new Dictionary<string, bool>(); // UGLY DESIGN!!
 
         /// <summary>
         /// 删除一节课
@@ -87,6 +89,21 @@ namespace XTCClassTime
             if (!File.Exists(dataFilePath))
             {
                 File.WriteAllText(dataFilePath, "");
+            }
+            var classes = GetClasses(week);
+            if (classes.Count >= 20)
+            {
+                throw new System.Exception("课程数量达到上限!");
+            }
+            foreach (var i in classes)
+            {
+                if ((i.BeginHour * 60 + i.BeginMinute <= ct.BeginHour * 60 + ct.BeginMinute
+                    && ct.BeginHour * 60 + ct.BeginMinute <= i.EndHour * 60 + i.EndMinute) ||
+                    (i.BeginHour * 60 + i.BeginMinute <= ct.EndHour * 60 + ct.EndMinute
+                    && ct.EndHour * 60 + ct.EndMinute <= i.EndHour * 60 + i.EndMinute))
+                {
+                    throw new System.Exception("课程冲突!");
+                }
             }
             File.WriteAllText(dataFilePath,
                 File.ReadAllText(dataFilePath) + ct.ToString() + '\n');
@@ -242,6 +259,15 @@ namespace XTCClassTime
             {
                 File.WriteAllText(imgConfFilePath, IMAGES_DEFAULT);
             }
+            var subjects = GetSubjects();
+            if (subjects.Contains(subjectName))
+            {
+                throw new System.Exception("科目重复!");
+            }
+            if (subjects.Count >= 50)
+            {
+                throw new System.Exception("已达到科目上限!");
+            }
             File.WriteAllText(imgConfFilePath,
                 File.ReadAllText(imgConfFilePath) + subjectName + " " + color + "\n");
         }
@@ -270,6 +296,47 @@ namespace XTCClassTime
                 content += cur + "\n";
             }
             File.WriteAllText(imgConfFilePath, content);
+        }
+
+        /// <summary>
+        /// Only for testing.
+        /// </summary>
+        public static void GenerateTestData() // ONLY FOR TEST
+        {
+            Random r = new Random();
+            var colors = new string[] {"Chinese", "Math", "English", "Art", "Music", "PE", "Unknown" };
+            while (true)
+            {
+                try
+                {
+                    DataController.AddSubject(System.Guid.NewGuid().ToString().Substring(0, 4), colors[r.Next(0, 7)]);
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+            }
+            var subjects = DataController.GetSubjects();            
+            for (int i = 0; i < 7; ++i)
+            {
+                for (int j = 0; j < 20; ++j)
+                {
+                    ClassTime ct = new ClassTime();
+                    ct.BeginHour = 2 * j / 60;
+                    ct.BeginMinute = 2 * j % 60;
+                    ct.EndHour = (2 * j + 1) / 60;
+                    ct.EndMinute = (2 * j + 1) % 60;
+                    ct.ClassName = subjects[r.Next(0, subjects.Count)];
+                    try
+                    {
+                        DataController.AddClass(i, ct);
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }

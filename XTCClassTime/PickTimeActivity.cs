@@ -16,6 +16,8 @@ namespace XTCClassTime
     [Activity(Label = "PickTimeActivity")]
     public class PickTimeActivity : Activity
     {
+        private const string ACTIVITY_NAME = "PickTime";
+
         TextView hourText, minuteText;
         int hours = 0, minutes = 0;
 
@@ -40,6 +42,14 @@ namespace XTCClassTime
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            if (DataController.StartedActivity.ContainsKey(ACTIVITY_NAME) && DataController.StartedActivity[ACTIVITY_NAME])
+            {
+                this.Finish();
+                return;
+            }
+            DataController.StartedActivity[ACTIVITY_NAME] = true;
+
             SetContentView(Resource.Layout.activity_pick_time);
 
             hourText = FindViewById<TextView>(Resource.Id.HourText);
@@ -122,6 +132,12 @@ namespace XTCClassTime
             if (DoShowTip())
                 Toast.MakeText(this, "长按+/-键试试吧!", ToastLength.Long).Show();
             // Create your application here
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DataController.StartedActivity[ACTIVITY_NAME] = false;
         }
     }
 }

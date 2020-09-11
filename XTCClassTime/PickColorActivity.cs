@@ -15,9 +15,19 @@ namespace XTCClassTime
     [Activity(Label = "PickColorActivity")]
     public class PickColorActivity : Activity
     {
+        private const string ACTIVITY_NAME = "PickColor";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            if (DataController.StartedActivity.ContainsKey(ACTIVITY_NAME) && DataController.StartedActivity[ACTIVITY_NAME])
+            {
+                this.Finish();
+                return;
+            }
+            DataController.StartedActivity[ACTIVITY_NAME] = true;
+
             SetContentView(Resource.Layout.activity_pick_color);
 
             FindViewById<Button>(Resource.Id.PickDefaultButton).Click += (sender, e) =>
@@ -77,6 +87,12 @@ namespace XTCClassTime
                 this.Finish();
             };
             // Create your application here
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DataController.StartedActivity[ACTIVITY_NAME] = false;
         }
     }
 }

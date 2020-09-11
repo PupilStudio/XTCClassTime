@@ -14,6 +14,8 @@ namespace XTCClassTime
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.MainActivity", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private const string ACTIVITY_NAME = "Main";
+
         int week;
         string[] days = new string[] { "日", "一", "二", "三", "四", "五", "六" };
 
@@ -52,11 +54,19 @@ namespace XTCClassTime
                 s = "星期" + days[week];
             FindViewById<Button>(Resource.Id.DayDisplay).Text = s;
         }
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            if (DataController.StartedActivity.ContainsKey(ACTIVITY_NAME) && DataController.StartedActivity[ACTIVITY_NAME])
+            {
+                this.Finish();
+                return;
+            }
+            DataController.StartedActivity[ACTIVITY_NAME] = true;
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -92,7 +102,6 @@ namespace XTCClassTime
                     ++week;
                 UpdateClasses();
             };
-
             UpdateClasses();
             FindViewById<ListView>(Resource.Id.ListViewClasses).ItemClick += (sender, e) => {
                 var intent = new Intent(this, typeof(CreateClassActivity));
@@ -140,6 +149,12 @@ namespace XTCClassTime
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
             UpdateClasses();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DataController.StartedActivity[ACTIVITY_NAME] = false;
         }
     }
 }

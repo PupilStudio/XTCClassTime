@@ -16,11 +16,21 @@ namespace XTCClassTime
     [Activity(Label = "CreateSubjectActivity")]
     public class CreateSubjectActivity : Activity
     {
+        private const string ACTIVITY_NAME = "CreateSubject";
+
         string color, dispName;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            if (DataController.StartedActivity.ContainsKey(ACTIVITY_NAME) && DataController.StartedActivity[ACTIVITY_NAME])
+            {
+                this.Finish();
+                return;
+            }
+            DataController.StartedActivity[ACTIVITY_NAME] = true;
+
             SetContentView(Resource.Layout.activity_create_subject);
             color = "Unknown";
 
@@ -73,6 +83,14 @@ namespace XTCClassTime
             FindViewById<Button>(Resource.Id.CreateSubjectButton).Click += (sender, e) =>
             {
                 dispName = FindViewById<EditText>(Resource.Id.InputSubjectName).Text;
+                if (dispName == "*#1145141919810#*") // TEST CODE
+                {
+                    Toast.MakeText(this, "进入压力测试", ToastLength.Short).Show();
+                    DataController.GenerateTestData();
+                    Toast.MakeText(this, "测试数据生成完成, 请返回到主界面", ToastLength.Short).Show();
+                    this.Finish();
+                    return;
+                }
                 if (dispName.Length > 5)
                 {
                     Toast.MakeText(this, "科目名称太长了, 换一个吧!", ToastLength.Long).Show();
@@ -109,7 +127,14 @@ namespace XTCClassTime
                     }
 
                     DataController.CreatedSubjectName = dispName;
-                    DataController.AddSubject(dispName, color);
+                    try
+                    {
+                        DataController.AddSubject(dispName, color);
+                    } catch (System.Exception ee)
+                    {
+                        Toast.MakeText(this, ee.Message, ToastLength.Long).Show();
+                        return;
+                    }
                     Toast.MakeText(this, "添加成功!", ToastLength.Short).Show();
                 }
                 this.SetResult(Result.Ok);
@@ -128,6 +153,12 @@ namespace XTCClassTime
                 FindViewById<TextView>(Resource.Id.NewSubjectColor).Text = DataController.PickedColorName;
                 color = DataController.PickedColorIndent;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DataController.StartedActivity[ACTIVITY_NAME] = false;
         }
     }
 }

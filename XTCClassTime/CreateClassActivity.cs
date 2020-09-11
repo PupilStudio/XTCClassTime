@@ -21,6 +21,8 @@ namespace XTCClassTime
     [Activity(Label = "CreateClassActivity")]
     public class CreateClassActivity : AppCompatActivity
     {
+        private const string ACTIVITY_NAME = "CreateClass";
+
         int begHour = -1, begMinute = -1, endHour = -1, endMinute = -1;
         string chgUUID, chgSubject = "未选择";
         int week;
@@ -40,14 +42,17 @@ namespace XTCClassTime
             return (time == -1) ? 0 : time;
         }
 
-        [Obsolete("It's a empty function.")]
-        void LoadSubjects()
-        {
-        }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            if (DataController.StartedActivity.ContainsKey(ACTIVITY_NAME) && DataController.StartedActivity[ACTIVITY_NAME])
+            {
+                this.Finish();
+                return;
+            }
+            DataController.StartedActivity[ACTIVITY_NAME] = true;
+
             SetContentView(Resource.Layout.activity_create_class);
             SupportActionBar.Hide();
 
@@ -141,7 +146,15 @@ namespace XTCClassTime
                     ct.BeginMinute = begMinute;
                     ct.EndHour = endHour;
                     ct.EndMinute = endMinute;
-                    DataController.AddClass(week, ct);
+                    try
+                    {
+                        DataController.AddClass(week, ct);
+                    }
+                    catch (System.Exception ee)
+                    {
+                        Toast.MakeText(this, ee.Message, ToastLength.Long).Show();
+                        return;
+                    }
                     Toast.MakeText(this, "课程添加成功!", ToastLength.Short);
                     this.SetResult(Result.Ok);
                     this.Finish();
@@ -171,6 +184,12 @@ namespace XTCClassTime
                 chgSubject = DataController.PickedSubject;
                 FindViewById<TextView>(Resource.Id.SubjectNameText).Text = chgSubject;
             }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            DataController.StartedActivity[ACTIVITY_NAME] = false;
         }
     }
 }
