@@ -9,7 +9,6 @@ using Android.Views;
 using Android.Content;
 using Android.Util;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace XTCClassTime
 {

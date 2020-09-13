@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_pressed="false">
     <layer-list>
-      <item android:height="25dp">
+      <item android:height="40dp">
         <shape>
           <corners android:bottomRightRadius="10dp" android:topRightRadius="10dp"/>
           <gradient android:angle="0" android:endColor="#ff555555" android:startColor="#ff444444" android:type="linear" android:useLevel="true" />
@@ -13,13 +13,13 @@
 
   <item android:state_pressed="true">
     <layer-list>
-      <item android:height="25dp">
+      <item android:height="40dp">
         <shape>
           <corners android:bottomRightRadius="10dp" android:topRightRadius="10dp"/>
           <gradient android:angle="0" android:endColor="#ff555555" android:startColor="#ff444444" android:type="linear" android:useLevel="true" />
         </shape>
       </item>
-      <item android:height="25dp">
+      <item android:height="40dp">
         <shape>
           <corners android:bottomRightRadius="10dp" android:topRightRadius="10dp"/>
           <gradient android:angle="0" android:endColor="#b3000000" android:startColor="#b3000000" android:type="linear" android:useLevel="true" />

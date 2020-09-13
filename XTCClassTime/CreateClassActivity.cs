@@ -8,8 +8,6 @@ using Android.Gestures;
 using Android.Views;
 using Android.Content;
 using System.IO;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using Android.Util;
 using System;
 using System.Linq;

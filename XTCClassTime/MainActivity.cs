@@ -49,7 +49,7 @@ namespace XTCClassTime
 
             string s;
             if (week == (int)DateTime.Now.DayOfWeek)
-                s = "星期" + days[week] + " 今天";
+                s = "星期" + days[week] + "\n今天";
             else
                 s = "星期" + days[week];
             FindViewById<Button>(Resource.Id.DayDisplay).Text = s;
