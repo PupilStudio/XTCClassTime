@@ -266,7 +266,7 @@ namespace XTCClassTime
             }
             if (subjects.Count >= 50)
             {
-                throw new System.Exception("已达到科目上限!");
+                throw new System.Exception("科目数量达到上限!");
             }
             File.WriteAllText(imgConfFilePath,
                 File.ReadAllText(imgConfFilePath) + subjectName + " " + color + "\n");
