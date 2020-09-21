@@ -16,9 +16,9 @@
             android:layout_marginLeft="5dp"
             android:textSize="16sp"/>
         <Button
-            android:layout_marginTop="12px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:layout_marginTop="6dp"
+            android:layout_width="22.5dp"
+            android:layout_height="22.5dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:id="@+id/AddSubjectButton"

@@ -16,7 +16,7 @@
         android:id="@+id/ReturnButton"/>
     <TextView
         android:layout_width="60dp"
-        android:layout_height="50px"
+        android:layout_height="25dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="118dp"
         android:text="取消"
@@ -34,7 +34,7 @@
         android:id="@+id/DeleteButton"/>      
     <TextView
         android:layout_width="60dp"
-        android:layout_height="50px"
+        android:layout_height="25dp"
         android:layout_marginRight="1dp"
         android:layout_marginTop="118dp"
         android:layout_alignParentRight="true"

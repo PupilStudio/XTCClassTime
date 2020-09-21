@@ -83,8 +83,8 @@
                         android:textColor="#CDFFFFFF"/>
                 </LinearLayout>
                 <ImageView
-                    android:layout_width="72px"
-                    android:layout_height="72px"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="2dp"
@@ -124,8 +124,8 @@
                         android:text="开始时间"/>
                 </LinearLayout>
                 <ImageView
-                    android:layout_width="72px"
-                    android:layout_height="72px"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="2dp"
@@ -166,8 +166,8 @@
                         android:text="结束时间"/>
                 </LinearLayout>
                 <ImageView
-                    android:layout_width="72px"
-                    android:layout_height="72px"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="2dp"

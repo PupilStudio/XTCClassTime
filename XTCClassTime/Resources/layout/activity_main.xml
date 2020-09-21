@@ -19,18 +19,18 @@
             android:layout_marginLeft="5dp"
             android:textSize="16sp"/>
         <Button
-            android:layout_marginTop="12px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:layout_marginTop="6dp"
+            android:layout_width="22.5dp"
+            android:layout_height="22.5dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="60px"
+            android:layout_marginRight="32dp"
             android:id="@+id/AnotherAddClassButton"
             android:background="@drawable/bg_another_add_button"/>
         <Button
-            android:layout_height="45px"
-            android:layout_width="45px"
-            android:layout_marginTop="12px"
-            android:layout_marginRight="5px"
+            android:layout_height="22.5dp"
+            android:layout_width="22.5dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="5dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_menu_bg"
             android:id="@+id/SettingsButton"/>
@@ -71,9 +71,10 @@
     </RelativeLayout>
     <Button
         android:layout_marginTop="2dp"
-        android:layout_width="160px"
-        android:layout_height="160px"
-        android:layout_marginLeft="80px"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:id="@+id/AddClassTodayButton"
         android:background="@drawable/selector_alarm_add_large"/>
     <TextView
