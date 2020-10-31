@@ -316,9 +316,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\test_icon_1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\bg_add_30dp.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
