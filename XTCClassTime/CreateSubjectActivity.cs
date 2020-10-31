@@ -34,11 +34,16 @@ namespace XTCClassTime
             SetContentView(Resource.Layout.activity_create_subject);
             color = "Unknown";
 
+            FindViewById<EditText>(Resource.Id.ViewSubjectName).Visibility = ViewStates.Gone;
+            FindViewById<EditText>(Resource.Id.InputSubjectName).Visibility = ViewStates.Visible;
             if (Intent.GetBooleanExtra("Edit", false))
             {
                 FindViewById<ImageView>(Resource.Id.NewSubjectImage).SetImageResource(
                     DataController.GetClassImage(Intent.GetStringExtra("Name"), out color));
+                FindViewById<EditText>(Resource.Id.ViewSubjectName).Text = Intent.GetStringExtra("Name");
                 FindViewById<EditText>(Resource.Id.InputSubjectName).Text = Intent.GetStringExtra("Name");
+                FindViewById<EditText>(Resource.Id.ViewSubjectName).Visibility = ViewStates.Visible;
+                FindViewById<EditText>(Resource.Id.InputSubjectName).Visibility = ViewStates.Gone;
                 string dispColor;
                 switch (color)
                 {

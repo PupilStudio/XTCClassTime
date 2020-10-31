@@ -28,6 +28,23 @@
         android:paddingRight="10dp"
         android:background="@drawable/list_background_selector"
         />
+    <EditText
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:tooltipText="输入科目名称"
+        android:id="@+id/ViewSubjectName"
+        android:textColor="#444444"
+        android:textSize="16dp"
+        android:textColorHint="#444444"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:enabled="false"
+        android:visibility="gone"
+        android:background="@drawable/list_background_selector"
+        />
     <RelativeLayout
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"

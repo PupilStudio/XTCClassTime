@@ -12,7 +12,6 @@ using Android.Util;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Org.Apache.Http.Entity;
 
 namespace XTCClassTime
 {
