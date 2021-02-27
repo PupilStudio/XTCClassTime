@@ -22,7 +22,7 @@
       <item android:height="40dp">
         <shape>
           <corners android:bottomLeftRadius="10dp" android:topLeftRadius="10dp"/>
-          <gradient android:angle="0" android:endColor="#b3000000" android:startColor="#b3000000" android:type="linear" android:useLevel="true" />
+          <gradient android:angle="0" android:endColor="#4d000000" android:startColor="#4d000000" android:type="linear" android:useLevel="true" />
         </shape>
       </item>
     </layer-list>

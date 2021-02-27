@@ -65,6 +65,13 @@ namespace XTCClassTime
                         ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName);
                     StartActivityForResult(intent, 364);
                 };
+                FindViewById<ListView>(Resource.Id.SubjectsList).ItemLongClick += (sender, e) =>
+                {
+                    Intent intent = new Intent(this, typeof(DeleteSubjectActivity));
+                    intent.PutExtra("SubjectName",
+                        ((ClassImage)FindViewById<ListView>(Resource.Id.SubjectsList).Adapter.GetItem(e.Position)).DisplayName);
+                    StartActivityForResult(intent, 443);
+                };
             }
             
             UpdateSubjects();

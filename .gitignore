@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# fuck
+易课表上架信息/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

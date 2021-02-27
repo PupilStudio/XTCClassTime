@@ -262,7 +262,7 @@ namespace XTCClassTime
             var subjects = GetSubjects();
             if (subjects.Contains(subjectName))
             {
-                throw new System.Exception("科目重复!");
+                throw new System.Exception("科目重复了!");
             }
             if (subjects.Count >= 50)
             {
@@ -298,6 +298,71 @@ namespace XTCClassTime
             File.WriteAllText(imgConfFilePath, content);
         }
 
+        public static void ModifySubjectName(string currentName, string modifiedName)
+        {
+            var items = GetSubjectsImage();
+            foreach (var i in items)
+            {
+                if (i.DisplayName == modifiedName)
+                {
+                    throw new System.Exception("科目重复了!");
+                }
+            }
+
+            string content = "";
+            foreach (var i in items)
+            {
+                if (i.DisplayName == currentName)
+                {
+                    i.DisplayName = modifiedName;
+                }
+                content = content + i.DisplayName + " " + i.Name + "\n";
+            }
+
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            File.WriteAllText(imgConfFilePath, content);
+
+            for (int i = 0; i != 7; ++i)
+            {
+                string path = System.IO.Path.Combine(DATA_PATH, "weekday" + i.ToString() + ".config");
+                content = "";
+                var vs = GetClasses(i);
+                foreach (var j in vs)
+                {
+                    if (j.ClassName == currentName)
+                        j.ClassName = modifiedName;
+                    content += j.ToString() + "\n";
+                }
+                File.WriteAllText(path, content);
+            }
+        }
+
+        public static void RemoveSubject(string subjectName)
+        {
+            var items = GetSubjectsImage();
+            string content = "";
+            foreach (var i in items)
+            {
+                if (i.DisplayName == subjectName) continue;
+                content = content + i.DisplayName + " " + i.Name + "\n";
+            }
+
+            string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
+            File.WriteAllText(imgConfFilePath, content);
+
+            for (int i = 0; i != 7; ++i)
+            {
+                string path = System.IO.Path.Combine(DATA_PATH, "weekday" + i.ToString() + ".config");
+                content = "";
+                var vs = GetClasses(i);
+                foreach (var j in vs)
+                {
+                    if (j.ClassName == subjectName) continue;
+                    content += j.ToString() + "\n";
+                }
+                File.WriteAllText(path, content);
+            }
+        }
         /// <summary>
         /// Only for testing.
         /// </summary>

@@ -19,6 +19,7 @@ namespace XTCClassTime
         private const string ACTIVITY_NAME = "CreateSubject";
 
         string color, dispName;
+        string beforeChange = "";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,10 +41,10 @@ namespace XTCClassTime
             {
                 FindViewById<ImageView>(Resource.Id.NewSubjectImage).SetImageResource(
                     DataController.GetClassImage(Intent.GetStringExtra("Name"), out color));
-                FindViewById<EditText>(Resource.Id.ViewSubjectName).Text = Intent.GetStringExtra("Name");
+                //FindViewById<EditText>(Resource.Id.ViewSubjectName).Text = Intent.GetStringExtra("Name");
                 FindViewById<EditText>(Resource.Id.InputSubjectName).Text = Intent.GetStringExtra("Name");
-                FindViewById<EditText>(Resource.Id.ViewSubjectName).Visibility = ViewStates.Visible;
-                FindViewById<EditText>(Resource.Id.InputSubjectName).Visibility = ViewStates.Gone;
+                //FindViewById<EditText>(Resource.Id.ViewSubjectName).Visibility = ViewStates.Visible;
+                //FindViewById<EditText>(Resource.Id.InputSubjectName).Visibility = ViewStates.Gone;
                 string dispColor;
                 switch (color)
                 {
@@ -72,7 +73,8 @@ namespace XTCClassTime
                 FindViewById<TextView>(Resource.Id.NewSubjectColor).Text = dispColor;
                 FindViewById<Button>(Resource.Id.CreateSubjectButton).Text = "修改";
                 FindViewById<TextView>(Resource.Id.AddSubjectTextView).Text = "编辑科目";
-                FindViewById<EditText>(Resource.Id.InputSubjectName).Enabled = false;
+                FindViewById<EditText>(Resource.Id.InputSubjectName).Enabled = true;
+                beforeChange = Intent.GetStringExtra("Name");
             }
 
             FindViewById<Button>(Resource.Id.PickColorButton).Click += (sender, e) =>
@@ -88,7 +90,7 @@ namespace XTCClassTime
             FindViewById<Button>(Resource.Id.CreateSubjectButton).Click += (sender, e) =>
             {
                 dispName = FindViewById<EditText>(Resource.Id.InputSubjectName).Text;
-                if (dispName == "*#1145141919810#*") // TEST CODE
+                if (dispName == "*#1919810114514#*") // TEST CODE
                 {
                     Toast.MakeText(this, "进入压力测试", ToastLength.Short).Show();
                     DataController.GenerateTestData();
@@ -120,6 +122,24 @@ namespace XTCClassTime
                 if (Intent.GetBooleanExtra("Edit", false)) 
                 {
                     DataController.ModifySubjectColor(dispName, color);
+                    if (beforeChange != dispName)
+                    {
+                        var subjects = DataController.GetSubjects();
+                        if (subjects.Contains(dispName))
+                        {
+                            Toast.MakeText(this, "科目重复了!", ToastLength.Long).Show();
+                            return;
+                        }
+                        DataController.ModifySubjectName(beforeChange, dispName);                        
+                        try
+                        {
+                            DataController.AddSubject(beforeChange, dispName);
+                        } catch (System.Exception ee)
+                        {
+                            Toast.MakeText(this, ee.Message, ToastLength.Long).Show();
+                            return;
+                        }
+                    }
                     Toast.MakeText(this, "修改成功!", ToastLength.Short).Show();
                 }
                 else

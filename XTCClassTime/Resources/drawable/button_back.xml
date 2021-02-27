@@ -7,7 +7,7 @@
   </item>
   <item android:state_pressed="true">
     <shape android:shape="oval">
-      <gradient android:angle="270" android:endColor="#b3333333" android:startColor="#b3373737" android:type="linear" />
+      <gradient android:angle="270" android:endColor="#4d333333" android:startColor="#4d373737" android:type="linear" />
     </shape>
   </item>
 </selector>
