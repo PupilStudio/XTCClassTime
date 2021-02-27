@@ -228,6 +228,10 @@ namespace XTCClassTime
             return subjects;
         }
 
+        /// <summary>
+        /// 获取List&lt;ClassImage&gt; 所有科目
+        /// </summary>
+        /// <returns></returns>
         public static List<ClassImage> GetSubjectsImage()
         {
             string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
@@ -252,6 +256,11 @@ namespace XTCClassTime
             return images;
         }
 
+        /// <summary>
+        /// 添加科目
+        /// </summary>
+        /// <param name="subjectName">科目名称</param>
+        /// <param name="color">颜色</param>
         public static void AddSubject(string subjectName, string color)
         {
             string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
@@ -272,6 +281,11 @@ namespace XTCClassTime
                 File.ReadAllText(imgConfFilePath) + subjectName + " " + color + "\n");
         }
 
+        /// <summary>
+        /// 更改科目颜色
+        /// </summary>
+        /// <param name="subjectName">科目名称</param>
+        /// <param name="color">颜色</param>
         public static void ModifySubjectColor(string subjectName, string color)
         {
             string imgConfFilePath = System.IO.Path.Combine(DATA_PATH, "images.conf");
@@ -298,6 +312,11 @@ namespace XTCClassTime
             File.WriteAllText(imgConfFilePath, content);
         }
 
+        /// <summary>
+        /// 修改科目名称，并将所有课程中的名称修改
+        /// </summary>
+        /// <param name="currentName">当前科目名称</param>
+        /// <param name="modifiedName">要修改到的名称</param>
         public static void ModifySubjectName(string currentName, string modifiedName)
         {
             var items = GetSubjectsImage();
@@ -337,6 +356,10 @@ namespace XTCClassTime
             }
         }
 
+        /// <summary>
+        /// 删除科目
+        /// </summary>
+        /// <param name="subjectName">要删除的科目名称</param>
         public static void RemoveSubject(string subjectName)
         {
             var items = GetSubjectsImage();
@@ -363,6 +386,7 @@ namespace XTCClassTime
                 File.WriteAllText(path, content);
             }
         }
+
         /// <summary>
         /// Only for testing.
         /// </summary>
