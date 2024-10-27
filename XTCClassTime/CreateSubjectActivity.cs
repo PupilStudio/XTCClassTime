@@ -121,7 +121,7 @@ namespace XTCClassTime
 
                 if (Intent.GetBooleanExtra("Edit", false)) 
                 {
-                    DataController.ModifySubjectColor(dispName, color);
+                    
                     if (beforeChange != dispName)
                     {
                         var subjects = DataController.GetSubjects();
@@ -130,16 +130,17 @@ namespace XTCClassTime
                             Toast.MakeText(this, "科目重复了!", ToastLength.Long).Show();
                             return;
                         }
-                        DataController.ModifySubjectName(beforeChange, dispName);                        
+                                                
                         try
                         {
-                            DataController.AddSubject(beforeChange, dispName);
+                            DataController.ModifySubjectName(beforeChange, dispName);
                         } catch (System.Exception ee)
                         {
                             Toast.MakeText(this, ee.Message, ToastLength.Long).Show();
                             return;
                         }
                     }
+                    DataController.ModifySubjectColor(dispName, color);
                     Toast.MakeText(this, "修改成功!", ToastLength.Short).Show();
                 }
                 else
